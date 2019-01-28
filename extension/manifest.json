@@ -6,7 +6,8 @@
     "activeTab",
     "declarativeContent",
     "storage",
-    "https://eastus.api.cognitive.microsoft.com/face/v1.0/detect"
+    "https://eastus.api.cognitive.microsoft.com/face/v1.0/detect",
+    "http://localhost:3000/api/webcam"
   ],
   "options_page": "options.html",
   "background": {
