@@ -36,53 +36,34 @@ navigator.mediaDevices
 const canvas = document.getElementById('canvas');
 const photo = document.getElementById('photo');
 
-function doTheThing(imgData) {
-	console.log('dothething');
+const form = {
+	a: "b",
+	c: "d"
+};
+
+async function doTheThing(imgData) {
 	console.log(imgData);
-	// var xhr = new XMLHttpRequest();
-
-	// xhr.onload = () => {
-	// 	if (xhr.status >= 200 && xhr.status < 300) {
-	// 		console.log('success!', xhr);
-	// 	} else {
-	// 		console.log('ugh');
-	// 	}
-	// 	console.log('every single time');
-	// };
-
-	// Request parameters.
-	// var params = {
-	// 	returnFaceId: true,
-	// 	returnFaceLandmarks: false,
-	// 	returnFaceAttributes: 'emotion'
-	// };
-
-	// const url = 'http://localhost:3000/api/webcam';
-
-	// fetch(url, {
-	// 	method: 'POST',
-	//   body: imgData,
-
-	// });
-	const body = new FormData();
-	body.append('image', imgData);
-	// const body = imgData;
-	const xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:3000/api/webcam');
-	// xhr.setRequestHeader('Content-Type', 'application/octect-stream');
-	// xhr.setRequestHeader('Content-Type', 'application/json');
-
-	xhr.send(body);
-
-	// xhr.open('POST', `http://localhost:3000/api/webcam`);
-	// xhr.setRequestHeader('Content-Type', 'application/json');
-	// xhr.setRequestHeader(
-	// 	'Ocp-Apim-Subscription-Key',
-	// 	'07463fe19ab1489aa9676f89bcb74fe3'
-	// );
-
-	// xhr.send(new Blob(imgData));
+	console.log('dothething');
+	// console.log(imgData);
+	await fetch('http://localhost:3000/api/webcam', {
+		method: 'POST',
+		body: JSON.stringify({a: 'a'}),
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type' : "application/json"
+		}
+	});
 }
+
+function dataURLtoBlob(dataurl) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {type:mime});
+}
+
 
 function takePicture() {
 	var context = canvas.getContext('2d');
@@ -94,7 +75,8 @@ function takePicture() {
 		context.drawImage(video, 0, 0, width, height);
 
 		var data = canvas.toDataURL('image/png');
-		doTheThing(data);
+		var toSend = dataURLtoBlob(data);
+		doTheThing(toSend);
 
 		// var data =
 		// 	canvas.toBlob(function(blob) {

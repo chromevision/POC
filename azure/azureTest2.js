@@ -3,7 +3,8 @@ const request = require('request');
 var bodyParser = require('body-parser');
 
 var app = express();
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Replace <Subscription Key> with your valid subscription key.
 const subscriptionKey = '07463fe19ab1489aa9676f89bcb74fe3';
@@ -20,9 +21,8 @@ var params = {
 	returnFaceAttributes: 'emotion'
 };
 
-app.post('/api/webcam', async (req, res, next) => {
-	console.log('post receivedXHR', req.body);
-	console.log('params', req.params);
+app.post('/api/webcam', (req, res, next) => {
+	console.log('post data', req.body);
 	res.send('resp');
 	// 	const options = {
 	// 		uri: uriBase,
