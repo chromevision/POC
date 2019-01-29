@@ -3,6 +3,7 @@ const request = require('request');
 var bodyParser = require('body-parser');
 // const axios = require('axios');
 const fs = require('fs');
+const { azureKey } = require('../secrets');
 
 var app = express();
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
@@ -28,17 +29,14 @@ var params = {
   returnFaceAttributes: 'emotion',
 };
 
-
 app.post('/api/webcam', async (req, res, next) => {
   try {
     console.log(req.body);
     // const base64Image = Buffer.from(req.body).toString('binary');
-		const azureKey = '07463fe19ab1489aa9676f89bcb74fe3';
     const options = {
       uri: uriBase,
       qs: params,
       body: req.body,
-      // body: ,
       headers: {
         'Content-Type': 'application/octet-stream',
         'Ocp-Apim-Subscription-Key': azureKey,
@@ -54,7 +52,7 @@ app.post('/api/webcam', async (req, res, next) => {
     });
     // res.send('resp');
   } catch (error) {
-	    next(error);
+    next(error);
   }
 });
 
