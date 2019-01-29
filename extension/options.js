@@ -15,45 +15,7 @@ navigator.mediaDevices
 const canvas = document.getElementById('canvas');
 const photo = document.getElementById('photo');
 
-async function doTheThing(data, url) {
-	// console.log(url.tablink);
-	console.log('dothething');
-	await fetch('http://localhost:3000/api/webcam', {
-		method: 'POST',
-		body: data,
-		headers: {
-			Accept: 'application/json',
-			'Content-Type': 'application/octet-stream',
-			tabUrl: JSON.stringify(url)
-		}
-	});
-}
-
-const tabInformation = () => {
-	// let tablink = '';
-	// let activeTab = {};
-	// let tabObj = {};
-
-	let tabURL = chrome.tabs.query(
-		{ active: true, currentWindow: true },
-		function(tabs) {
-			let tab = tabs[0];
-			console.log(tab.url);
-			return tab.url;
-			// console.log(tabs[0]);
-			// console.log(tabs[0].url);
-			// var activeTabId = activeTab.id; // or do whatever you need
-			// });
-			// let link =  chrome.tabs.getSelected(null, tab => {
-			// 	// tabObj.tablink = tab.url;
-			// 	// const tabURL = tab.url;
-			// 	return tab.url;
-		}
-	);
-	return tabURL;
-};
-
-const takePicture = () => {
+const takePicture = async () => {
 	var context = canvas.getContext('2d');
 	var width = canvas.width;
 	var height = canvas.height;
@@ -71,17 +33,33 @@ const takePicture = () => {
 		for (let i = 0; i < bytes.length; i++) {
 			byteArr[i] = bytes.charCodeAt(i);
 		}
-		// let tabURL = chrome.tabs.query(
-		// 	{ active: true, lastFocusedWindow: true },
-		// 	function(tabs) {
-		// 		let tab = tabs[0];
-		// 		console.log(tab.url);
-		// 	}
-		// );
-		while (tabURL !== undefined) {
-			console.log(tabURL);
-			doTheThing(byteArr, tabURL);
+
+		async function getCurrentTab(callback) {
+			await chrome.tabs.query(
+				{
+					active: true,
+					currentWindow: true
+				},
+				function(tabs) {
+					callback(tabs[0]);
+				}
+			);
 		}
+
+		async function displayTab(tab) {
+			let tabURL = tab.url;
+			await fetch('http://localhost:3000/api/webcam', {
+				method: 'POST',
+				body: byteArr,
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/octet-stream',
+					tabUrl: tabURL
+				}
+			});
+		}
+
+		getCurrentTab(displayTab);
 	} else {
 		// clearphoto();
 	}
