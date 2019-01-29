@@ -36,21 +36,18 @@ navigator.mediaDevices
 const canvas = document.getElementById('canvas');
 const photo = document.getElementById('photo');
 
-const form = {
-	a: "b",
-	c: "d"
-};
+
 
 async function doTheThing(imgData) {
-	console.log(imgData);
+	// console.log(imgData);
 	console.log('dothething');
 	// console.log(imgData);
 	await fetch('http://localhost:3000/api/webcam', {
 		method: 'POST',
-		body: JSON.stringify({a: 'a'}),
+		body: JSON.stringify({img: imgData}),
 		headers: {
-			'Accept': 'application/json',
-			'Content-Type' : "application/json"
+			'Accept': 'application/octet-stream',
+			'Content-Type': 'application/octet-stream'	
 		}
 	});
 }
