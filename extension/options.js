@@ -61,6 +61,7 @@ function dataURLtoBlob(dataurl) {
   return new Blob([u8arr], { type: mime });
 }
 
+
 function takePicture() {
   var context = canvas.getContext('2d');
   var width = canvas.width;
