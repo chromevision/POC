@@ -1,27 +1,8 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 
 'use strict';
 
-// let page = document.getElementById('buttonDiv');
-// const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
-// function constructOptions(kButtonColors) {
-//   for (let item of kButtonColors) {
-//     let button = document.createElement('button');
-//     button.style.backgroundColor = item;
-//     button.addEventListener('click', function() {
-//       chrome.storage.sync.set({ color: item }, function() {
-//         console.log('color is ' + item);
-//       });
-//     });
-//     page.appendChild(button);
-//   }
-// }
-// constructOptions(kButtonColors);
 
 const video = document.getElementById('live-video');
-// video.onClick = () => snapshot();
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -49,19 +30,6 @@ async function doTheThing(imgData) {
   });
 }
 
-function dataURLtoBlob(dataurl) {
-  var arr = dataurl.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new Blob([u8arr], { type: mime });
-}
-
-
 function takePicture() {
   var context = canvas.getContext('2d');
   var width = canvas.width;
@@ -71,20 +39,18 @@ function takePicture() {
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
 
-		var data = canvas.toDataURL('image/png');
-		console.log(data)
-    // var toSend = dataURLtoBlob(data);
-    doTheThing(data);
+    console.log(canvas);
+		const dataUri = canvas.toDataURL('image/jpeg', 1);
+    const data = dataUri.split(',')[1];
+    const mimeType = dataUri.split(';')[0].slice(5)
+    const bytes = window.atob(data);
+    const buf = new ArrayBuffer(bytes.length);
+    const byteArr = new Uint8Array(buf);
+    for(let i = 0; i < bytes.length; i++){
+      byteArr[i] = bytes.charCodeAt(i);
+    }
+    doTheThing(byteArr);
 
-    // var data =
-    // 	canvas.toBlob(function(blob) {
-    // 		let blobby = URL.createObjectURL(blob);
-    // 		console.log(blobby);
-    // 		// 	console.log(link.href); // this line should be here
-    // 	})
-    // 	// , 'image/png')
-    // );
-    // photo.setAttribute('src', data);
   } else {
     // clearphoto();
   }

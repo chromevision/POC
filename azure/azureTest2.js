@@ -1,7 +1,8 @@
 var express = require('express');
 const request = require('request');
 var bodyParser = require('body-parser');
-const axios = require('axios');
+// const axios = require('axios');
+const fs = require('fs');
 
 var app = express();
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
@@ -27,45 +28,23 @@ var params = {
   returnFaceAttributes: 'emotion',
 };
 
+
 app.post('/api/webcam', async (req, res, next) => {
   try {
-    const base64Image = Buffer.from(req.body).toString('base64');
-    // const imgurRes = await axios.post('https://api.imgur.com/3/image', {
-    //   image: base64Image,
-    //   type: 'base64',
-    //   headers: {
-    //     Authorization: `Client-ID 5feca055666f551`,
-    //   },
-    // });
-
-    const imgurRes = await axios.post(
-      'https://api.imgur.com/3/image',
-      {
-				image: `data:image/png;base64 ${base64Image}`,
-        album: 'VEHhzmA'
-      },
-      {
-        headers: {
-					'content-type':
-            'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
-          Authorization: 'Client-ID 5feca055666f551',
-        },
-      }
-    );
-
-    console.log('imgur respose', imgurRes);
-		// const imageLink = imgurRes.data.link;
+    console.log(req.body);
+    // const base64Image = Buffer.from(req.body).toString('binary');
 		const azureKey = '07463fe19ab1489aa9676f89bcb74fe3';
     const options = {
       uri: uriBase,
       qs: params,
+      body: req.body,
       // body: ,
       headers: {
         'Content-Type': 'application/octet-stream',
         'Ocp-Apim-Subscription-Key': azureKey,
       },
     };
-    request.post(options, (error, response, body) => {
+    await request.post(options, (error, response, body) => {
       if (error) {
         console.log('Error: ', error);
         return;
