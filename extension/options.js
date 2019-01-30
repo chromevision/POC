@@ -53,7 +53,8 @@ const takePicture = async () => {
 				headers: {
 					Accept: 'application/json',
 					'Content-Type': 'application/octet-stream',
-					tabUrl: tabURL
+					tabUrl: tabURL,
+					tokenId: token
 				}
 			});
 		}
@@ -81,7 +82,7 @@ const userTokenId = async () => {
 	// deleteUserIdFromStorage(deltedToken);
 
 	async function getUserIdFromStorage(callback) {
-		await chrome.storage.sync.get('userid', function(items) {
+		await chrome.storage.sync.get('userid', async function(items) {
 			let userid = items.userid;
 			if (userid) {
 				callback(userid);
@@ -93,7 +94,7 @@ const userTokenId = async () => {
 					hex += randomPool[i].toString(16);
 				}
 				console.log(hex, 'else');
-				chrome.storage.sync.set({ userid: hex }, function() {
+				await chrome.storage.sync.set({ userid: hex }, function() {
 					callback(hex);
 				});
 			}

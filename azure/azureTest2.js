@@ -24,6 +24,7 @@ var params = {
 
 app.post('/api/webcam', async (req, res, next) => {
 	try {
+		console.log(req.headers.tokenid);
 		console.log(req.headers.taburl);
 		const options = {
 			uri: uriBase,
