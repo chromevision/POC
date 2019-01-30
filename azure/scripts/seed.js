@@ -14,7 +14,7 @@ async function seed() {
       tokenId:
         'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
     }),
-    User.create({ email: 'ydoc@email.com', password: '321', tokenId: 2 }),
+    User.create({ email: 'ydoc@email.com', password: '321', tokenId: '2' }),
   ]);
 
   const emotions = await Promise.all([
@@ -28,7 +28,8 @@ async function seed() {
       neutral: '0.002',
       sadness: '0.01',
       surprise: '0.068',
-      userId: 1,
+      userTokenId:
+        'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
     }),
     Emotion.create({
       url: 'yahoo.com',
@@ -40,7 +41,7 @@ async function seed() {
       neutral: '0',
       sadness: '0',
       surprise: '0',
-      userId: 2,
+      userTokenId: '2',
     }),
   ]);
 
