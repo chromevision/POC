@@ -56,7 +56,7 @@ const takePicture = async () => {
 					tabUrl: tabURL,
 					tokenId: token
 				}
-			});
+			}).then(res => console.log(res));
 		}
 
 		getCurrentTab(displayTab);

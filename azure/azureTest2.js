@@ -55,6 +55,8 @@ app.post('/api/webcam', async (req, res, next) => {
 			let jsonResponse = JSON.stringify(JSON.parse(body), null, '  ');
 			console.log('JSON response:', jsonResponse);
 		});
+		// do not remove the response
+		res.send('resoponse');
 	} catch (error) {
 		next(error);
 	}
