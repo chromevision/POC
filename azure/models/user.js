@@ -13,9 +13,10 @@ const User = db.define('user', {
     allowNull: false,
   },
   tokenId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     primaryKey: true,
     allowNull: false,
+    unique: true,
   },
 });
 
