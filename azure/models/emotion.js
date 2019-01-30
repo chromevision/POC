@@ -5,28 +5,28 @@ const Emotion = db.define('emotion', {
   url: {
     type: Sequelize.STRING,
   },
-  angerScore: {
+  anger: {
     type: Sequelize.STRING,
   },
-  contemptScore: {
+  contempt: {
     type: Sequelize.STRING,
   },
-  disgustScore: {
+  disgust: {
     type: Sequelize.STRING,
   },
-  fearScore: {
+  fear: {
     type: Sequelize.STRING,
   },
-  happinessScore: {
+  happiness: {
     type: Sequelize.STRING,
   },
-  neutralScore: {
+  neutral: {
     type: Sequelize.STRING,
   },
-  sadnessScore: {
+  sadness: {
     type: Sequelize.STRING,
   },
-  surpriseScore: {
+  surprise: {
     type: Sequelize.STRING,
   },
 });

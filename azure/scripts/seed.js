@@ -8,34 +8,40 @@ async function seed() {
   console.log('Database synchronization complete.');
 
   const users = await Promise.all([
-    User.create({ email: 'cody@email.com', password: '123', tokenId: 1 }),
-    User.create({ email: 'ydoc@email.com', password: '321', tokenId: 2 }),
+    User.create({
+      email: 'cody@email.com',
+      password: '123',
+      tokenId:
+        'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
+    }),
+    User.create({ email: 'ydoc@email.com', password: '321', tokenId: '2' }),
   ]);
 
   const emotions = await Promise.all([
     Emotion.create({
       url: 'google.com',
-      angerScore: '0',
-      contemptScore: '0',
-      disgustScore: '0',
-      fearScore: '0.12',
-      happinessScore: '0.8',
-      neutralScore: '0.002',
-      sadnessScore: '0.01',
-      surpriseScore: '0.068',
-      userId: 1,
+      anger: '0',
+      contempt: '0',
+      disgust: '0',
+      fear: '0.12',
+      happiness: '0.8',
+      neutral: '0.002',
+      sadness: '0.01',
+      surprise: '0.068',
+      userTokenId:
+        'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
     }),
     Emotion.create({
       url: 'yahoo.com',
-      angerScore: '1',
-      contemptScore: '0',
-      disgustScore: '0',
-      fearScore: '0',
-      happinessScore: '0',
-      neutralScore: '0',
-      sadnessScore: '0',
-      surpriseScore: '0',
-      userId: 2,
+      anger: '1',
+      contempt: '0',
+      disgust: '0',
+      fear: '0',
+      happiness: '0',
+      neutral: '0',
+      sadness: '0',
+      surprise: '0',
+      userTokenId: '2',
     }),
   ]);
 
