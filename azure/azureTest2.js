@@ -5,6 +5,7 @@ const fs = require('fs');
 const { azureKey } = require('./secrets');
 const db = require('./db');
 const { User, Emotion } = require('./models/index');
+const path = require('path');
 var app = express();
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
@@ -15,6 +16,12 @@ app.use(
     limit: '10mb',
   })
 );
+app.use(express.static(path.join(__dirname, '../..', 'webapp', 'public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'webapp/public/index.html'));
+})
+
 
 const uriBase = 'https://eastus.api.cognitive.microsoft.com/face/v1.0/detect';
 
@@ -23,6 +30,7 @@ var params = {
   returnFaceLandmarks: 'false',
   returnFaceAttributes: 'emotion',
 };
+
 
 app.get('/api/emotions', async (req, res, next) => {
   try {
