@@ -85,18 +85,6 @@ async function seed() {
       userTokenId:
         'd19c8d2f61d45395f1d897faf33d35ec97e9a021509cdb3614c7bc4c4fb27b',
     }),
-    Emotion.create({
-      url: 'yahoo.com',
-      anger: '1',
-      contempt: '0',
-      disgust: '0',
-      fear: '0',
-      happiness: '0',
-      neutral: '0',
-      sadness: '0',
-      surprise: '0',
-      userTokenId: '2',
-    }),
   ]);
 
   console.log(`seeded ${users.length} users`);
