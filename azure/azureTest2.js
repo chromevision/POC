@@ -5,7 +5,6 @@ const fs = require('fs');
 const { azureKey } = require('./secrets');
 const db = require('./db');
 const { User, Emotion } = require('./models/index');
-
 var app = express();
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
@@ -24,6 +23,29 @@ var params = {
   returnFaceLandmarks: 'false',
   returnFaceAttributes: 'emotion',
 };
+
+app.get('/api/emotions', async (req, res, next) => {
+  try {
+    const allEmotions = await Emotion.findAll();
+    res.send(allEmotions);
+  } catch (error) {
+    next(error);
+  }
+})
+
+app.get('/api/emotions/:id', async (req, res, next) => {
+  try {
+    const allEmotionsForUser = await Emotion.findAll({
+      where: {
+        userTokenId: req.params.id
+      },
+      include: [{all: true}]
+    })
+    res.send(allEmotionsForUser);
+  } catch (error) {
+    next(error);
+  }
+})
 
 app.get('/api/users', async (req, res, next) => {
   try {
