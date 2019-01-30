@@ -10,9 +10,12 @@ const User = db.define('user', {
   password: {
     // protect later
     type: Sequelize.STRING,
+    allowNull: false,
   },
   tokenId: {
     type: Sequelize.INTEGER,
+    primaryKey: true,
+    allowNull: false,
   },
 });
 
