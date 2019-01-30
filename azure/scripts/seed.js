@@ -9,12 +9,27 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      email: 'cody@email.com',
+      email: 'joseph@email.com',
       password: '123',
       tokenId:
         'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
     }),
-    User.create({ email: 'ydoc@email.com', password: '321', tokenId: '2' }),
+    User.create({
+      email: 'stephen@email.com',
+      password: '321',
+      tokenId: '3ce0c3bd839d10e849d54d4422104ee521f39effe3c4d9f925ed292434364f',
+    }),
+    User.create({
+      email: 'preet@email.com',
+      password: '1234',
+      tokenId:
+        '3b56b089b21077b46971a5c33e1cf718d68c3d4ddd7f129d123ffe7f9f011ab',
+    }),
+    User.create({
+      email: 'sanjeev@email.com',
+      password: '4321',
+      tokenId: 'd19c8d2f61d45395f1d897faf33d35ec97e9a021509cdb3614c7bc4c4fb27b',
+    }),
   ]);
 
   const emotions = await Promise.all([
@@ -30,6 +45,45 @@ async function seed() {
       surprise: '0.068',
       userTokenId:
         'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
+    }),
+    Emotion.create({
+      url: 'google.com',
+      anger: '0',
+      contempt: '0',
+      disgust: '0',
+      fear: '0.12',
+      happiness: '0.8',
+      neutral: '0.002',
+      sadness: '0.01',
+      surprise: '0.068',
+      userTokenId:
+        '3ce0c3bd839d10e849d54d4422104ee521f39effe3c4d9f925ed292434364f',
+    }),
+    Emotion.create({
+      url: 'google.com',
+      anger: '0',
+      contempt: '0',
+      disgust: '0',
+      fear: '0.12',
+      happiness: '0.8',
+      neutral: '0.002',
+      sadness: '0.01',
+      surprise: '0.068',
+      userTokenId:
+        '3b56b089b21077b46971a5c33e1cf718d68c3d4ddd7f129d123ffe7f9f011ab',
+    }),
+    Emotion.create({
+      url: 'google.com',
+      anger: '0',
+      contempt: '0',
+      disgust: '0',
+      fear: '0.12',
+      happiness: '0.8',
+      neutral: '0.002',
+      sadness: '0.01',
+      surprise: '0.068',
+      userTokenId:
+        'd19c8d2f61d45395f1d897faf33d35ec97e9a021509cdb3614c7bc4c4fb27b',
     }),
     Emotion.create({
       url: 'yahoo.com',
