@@ -12,7 +12,7 @@ async function seed() {
       email: 'joseph@email.com',
       password: '123',
       tokenId:
-        'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
+        '4cc2b8a24fe082de8ea4ced09af2c9d22467a5c3799bda4da4c8ed5059c38c',
     }),
     User.create({
       email: 'stephen@email.com',
@@ -44,7 +44,7 @@ async function seed() {
       sadness: '0.01',
       surprise: '0.068',
       userTokenId:
-        'e7e4ba5ae83aac1e6296347c415a58e5ceeadc1a71e26ff947d770bbfea32b6f',
+        '4cc2b8a24fe082de8ea4ced09af2c9d22467a5c3799bda4da4c8ed5059c38c',
     }),
     Emotion.create({
       url: 'google.com',
