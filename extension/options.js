@@ -1,5 +1,3 @@
-'use strict';
-
 const video = document.getElementById('live-video');
 
 navigator.mediaDevices
@@ -14,6 +12,7 @@ navigator.mediaDevices
 
 const canvas = document.getElementById('canvas');
 const photo = document.getElementById('photo');
+let token;
 
 const takePicture = async () => {
 	var context = canvas.getContext('2d');
@@ -64,6 +63,50 @@ const takePicture = async () => {
 		// clearphoto();
 	}
 };
+
+const userTokenId = async () => {
+	// USE THIS TO RESET YOUR TOKEN
+	// try {
+	// 	function deleteUserIdFromStorage(callback) {
+	// 		chrome.storage.sync.remove('userid', function() {
+	// 			callback();
+	// 		});
+	// 	}
+	// } catch (error) {
+	// 	console.log(chrome.runtime.lastError);
+	// }
+	// async function deltedToken() {
+	// 	console.log('deleted');
+	// }
+	// deleteUserIdFromStorage(deltedToken);
+
+	async function getUserIdFromStorage(callback) {
+		await chrome.storage.sync.get('userid', function(items) {
+			let userid = items.userid;
+			if (userid) {
+				callback(userid);
+			} else {
+				let randomPool = new Uint8Array(32);
+				crypto.getRandomValues(randomPool);
+				let hex = '';
+				for (let i = 0; i < randomPool.length; i++) {
+					hex += randomPool[i].toString(16);
+				}
+				console.log(hex, 'else');
+				chrome.storage.sync.set({ userid: hex }, function() {
+					callback(hex);
+				});
+			}
+		});
+	}
+	async function useToken(userid) {
+		token = userid;
+		console.log(token);
+	}
+	getUserIdFromStorage(useToken);
+};
+
+userTokenId();
 
 setInterval(function() {
 	takePicture();

@@ -16,7 +16,6 @@ app.use(
 
 const uriBase = 'https://eastus.api.cognitive.microsoft.com/face/v1.0/detect';
 
-// Request parameters.
 var params = {
 	returnFaceId: 'true',
 	returnFaceLandmarks: 'false',
@@ -25,9 +24,7 @@ var params = {
 
 app.post('/api/webcam', async (req, res, next) => {
 	try {
-		// console.log('BODDYYY', req.body);
-		console.log(req.headers);
-		// const base64Image = Buffer.from(req.body).toString('binary');
+		console.log(req.headers.taburl);
 		const options = {
 			uri: uriBase,
 			qs: params,
@@ -45,7 +42,6 @@ app.post('/api/webcam', async (req, res, next) => {
 			let jsonResponse = JSON.stringify(JSON.parse(body), null, '  ');
 			console.log('JSON response:', jsonResponse);
 		});
-		// res.send('resp');
 	} catch (error) {
 		next(error);
 	}
