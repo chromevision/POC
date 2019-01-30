@@ -3,8 +3,11 @@ const request = require('request');
 var bodyParser = require('body-parser');
 const fs = require('fs');
 const { azureKey } = require('./secrets');
+const db = require('./db');
+const { User, Emotion } = require('./models/index');
 
 var app = express();
+
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(bodyParser.json({ limit: '10mb', extended: true }));
 app.use(
@@ -21,6 +24,15 @@ var params = {
 	returnFaceLandmarks: 'false',
 	returnFaceAttributes: 'emotion'
 };
+
+app.get('/api/users', async (req, res, next) => {
+	try {
+		const userList = await User.findAll();
+		res.send(userList);
+	} catch (error) {
+		next(error);
+	}
+});
 
 app.post('/api/webcam', async (req, res, next) => {
 	try {
