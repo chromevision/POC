@@ -2,10 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
+import axios from 'axios';
 
 /**
  * COMPONENT
  */
+const testing = async () => {
+  console.log(await axios.get('/api/emotions'));
+}
+testing();
+
 const AuthForm = props => {
   const { name, displayName, handleSubmit, error } = props;
 
