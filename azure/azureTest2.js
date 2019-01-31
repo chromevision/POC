@@ -1,12 +1,11 @@
-var express = require('express');
+const express = require('express');
 const request = require('request');
-var bodyParser = require('body-parser');
-const fs = require('fs');
+const bodyParser = require('body-parser');
 const { azureKey } = require('./secrets');
-const db = require('./db');
 const { User, Emotion } = require('./models/index');
 const path = require('path');
-var app = express();
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(bodyParser.json({ limit: '10mb', extended: true }));
@@ -16,16 +15,22 @@ app.use(
     limit: '10mb',
   })
 );
-app.use(express.static(path.join(__dirname, '../..', 'webapp', 'public')));
+// app.use(express.static(path.join(__dirname, '../..', 'webapp', 'public')));
+app.use(express.static(path.join(__dirname, "../..", "webapp" , "build")));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'webapp/public/index.html'));
-})
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'webapp/public/index.html'));
+// })
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "../..", "webapp" ,"build", "index.html"));
+});
+
 
 
 const uriBase = 'https://eastus.api.cognitive.microsoft.com/face/v1.0/detect';
 
-var params = {
+const params = {
   returnFaceId: 'true',
   returnFaceLandmarks: 'false',
   returnFaceAttributes: 'emotion',
@@ -104,8 +109,8 @@ app.post('/api/webcam', async (req, res, next) => {
   }
 });
 
-app.listen(3000, function() {
-  console.log('Listening on port 3000!');
+app.listen(PORT, function() {
+  console.log(`Listening on port ${PORT}!`);
 });
 
 module.exports = app;

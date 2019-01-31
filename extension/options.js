@@ -47,7 +47,7 @@ const takePicture = async () => {
 
 		async function displayTab(tab) {
 			let tabURL = tab.url;
-			await fetch('http://localhost:3000/api/webcam', {
+			await fetch('http://localhost:8080/api/webcam', {
 				method: 'POST',
 				body: byteArr,
 				headers: {
