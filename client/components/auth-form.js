@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const testing = async () => {
   console.log(await axios.get('/api/emotions'));
-}
+};
 
 testing();
 
