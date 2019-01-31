@@ -1,9 +1,9 @@
-const router = require('express').Router()
-const {Emotion} = require('../db/models')
+const router = require('express').Router();
+const { Emotion } = require('../db/models');
 const { azureKey } = require('../secrets');
 const request = require('request');
 
-module.exports = router
+module.exports = router;
 
 const uriBase = 'https://eastus.api.cognitive.microsoft.com/face/v1.0/detect';
 

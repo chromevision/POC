@@ -16,17 +16,14 @@ app.use(
   })
 );
 // app.use(express.static(path.join(__dirname, '../..', 'webapp', 'public')));
-app.use(express.static(path.join(__dirname, "../..", "webapp" , "build")));
-
+app.use(express.static(path.join(__dirname, '../..', 'webapp', 'build')));
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, '..', 'webapp/public/index.html'));
 // })
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../..", "webapp" ,"build", "index.html"));
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../..', 'webapp', 'build', 'index.html'));
 });
-
-
 
 const uriBase = 'https://eastus.api.cognitive.microsoft.com/face/v1.0/detect';
 
@@ -36,7 +33,6 @@ const params = {
   returnFaceAttributes: 'emotion',
 };
 
-
 app.get('/api/emotions', async (req, res, next) => {
   try {
     const allEmotions = await Emotion.findAll();
@@ -44,21 +40,21 @@ app.get('/api/emotions', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
 
 app.get('/api/emotions/:id', async (req, res, next) => {
   try {
     const allEmotionsForUser = await Emotion.findAll({
       where: {
-        userTokenId: req.params.id
+        userTokenId: req.params.id,
       },
-      include: [{all: true}]
-    })
+      include: [{ all: true }],
+    });
     res.send(allEmotionsForUser);
   } catch (error) {
     next(error);
   }
-})
+});
 
 app.get('/api/users', async (req, res, next) => {
   try {
