@@ -2,19 +2,18 @@ const video = document.getElementById('live-video');
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
-  .then(function(stream) {
+  .then(stream => {
     video.srcObject = stream;
     video.play();
   })
-  .catch(function(err) {
+  .catch(err => {
     console.log('An error occurred! ' + err);
   });
 
 const canvas = document.getElementById('canvas');
-const photo = document.getElementById('photo');
 let token;
 
-const takePicture = async () => {
+const takePicture = () => {
   var context = canvas.getContext('2d');
   var width = canvas.width;
   var height = canvas.height;
@@ -39,7 +38,7 @@ const takePicture = async () => {
           active: true,
           currentWindow: true,
         },
-        function(tabs) {
+        tabs => {
           callback(tabs[0]);
         }
       );
@@ -60,12 +59,10 @@ const takePicture = async () => {
     }
 
     getCurrentTab(displayTab);
-  } else {
-    // clearphoto();
   }
 };
 
-const userTokenId = async () => {
+const userTokenId = () => {
   // USE THIS TO RESET YOUR TOKEN
   // try {
   // 	function deleteUserIdFromStorage(callback) {
@@ -82,8 +79,9 @@ const userTokenId = async () => {
   // deleteUserIdFromStorage(deltedToken);
 
   async function getUserIdFromStorage(callback) {
-    await chrome.storage.sync.get('userid', async function(items) {
+    await chrome.storage.sync.get('userid', async items => {
       let userid = items.userid;
+      localStorage.setItem('userToken', userid);
       if (userid) {
         callback(userid);
       } else {
@@ -94,7 +92,7 @@ const userTokenId = async () => {
           hex += randomPool[i].toString(16);
         }
         console.log(hex, 'else');
-        await chrome.storage.sync.set({ userid: hex }, function() {
+        await chrome.storage.sync.set({ userid: hex }, () => {
           callback(hex);
         });
       }
@@ -109,6 +107,6 @@ const userTokenId = async () => {
 
 userTokenId();
 
-setInterval(function() {
+setInterval(() => {
   takePicture();
 }, 5000);
