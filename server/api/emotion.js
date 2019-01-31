@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Emotion } = require('../db/models');
-module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -10,3 +9,19 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const userEmotions = await Emotion.findAll({
+      where: {
+        userTokenId: req.params.id,
+      },
+      include: [{ all: true }],
+    });
+    res.send(userEmotions);
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = router;

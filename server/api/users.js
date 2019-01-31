@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User, Emotion } = require('../db/models');
-module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -33,3 +32,5 @@ router.get('/:id/emotions', async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;
