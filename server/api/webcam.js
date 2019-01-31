@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Emotion } = require('../db/models');
+const { User, Emotion } = require('../db/models');
 const { azureKey } = require('../../secrets');
 const request = require('request');
 
@@ -35,11 +35,22 @@ router.post('/', async (req, res, next) => {
         let jsonObj = JSON.parse(body);
         let jsonResponse = JSON.stringify(jsonObj, null, '  ');
         console.log('JSON response:', jsonResponse);
-        emotionObj = jsonObj[0].faceAttributes.emotion;
-        emotionObj.url = taburl;
-        emotionObj.userTokenId = tokenid;
-        console.log('emotion object sent to db:\n', emotionObj);
-        await Emotion.create(emotionObj);
+        if (jsonObj[0]) {
+          emotionObj = jsonObj[0].faceAttributes.emotion;
+          emotionObj.url = taburl;
+          const associatedUser = await User.findOne({
+            where: {
+              tokenId: tokenid,
+            },
+          });
+          emotionObj.userId = associatedUser.id;
+          console.log('emotion object sent to db:\n', emotionObj);
+          await Emotion.create(emotionObj);
+        } else {
+          console.log(
+            'The face detection response is empty. Either there is no face in the photo or the image data is bad. Please try again.'
+          );
+        }
       } catch (error) {
         next(error);
       }
