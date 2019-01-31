@@ -17,6 +17,7 @@ const params = {
 
 router.post('/webcam', async (req, res, next) => {
   try {
+    let emotionObj;
     const { tokenid, taburl } = req.headers;
     console.log(req.headers.tokenid);
     console.log(req.headers.taburl);
@@ -29,7 +30,6 @@ router.post('/webcam', async (req, res, next) => {
         'Ocp-Apim-Subscription-Key': azureKey,
       },
     };
-    let emotionObj;
     await request.post(options, async (error, response, body) => {
       try {
         if (error) {
@@ -56,7 +56,7 @@ router.post('/webcam', async (req, res, next) => {
 });
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found');
+  const error = new Error('Not found.');
   error.status = 404;
   next(error);
 });
