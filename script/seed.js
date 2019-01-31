@@ -11,7 +11,8 @@ async function seed() {
     User.create({
       email: 'joseph@email.com',
       password: '123',
-      tokenId: '4cc2b8a24fe082de8ea4ced09af2c9d22467a5c3799bda4da4c8ed5059c38c',
+      tokenId:
+        '4cc2b8a24fe082de8ea4ced09af2c9d22467a5c3799bda4da4c8ed5059c38c',
     }),
     User.create({
       email: 'stephen@email.com',
