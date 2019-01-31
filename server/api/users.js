@@ -23,7 +23,7 @@ router.get('/:id/emotions', async (req, res, next) => {
   try {
     const userEmotions = await Emotion.findAll({
       where: {
-        userTokenId: req.params.id,
+        userId: req.params.id,
       },
       include: [{ all: true }],
     });

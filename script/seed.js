@@ -11,20 +11,22 @@ async function seed() {
     User.create({
       email: 'joseph@email.com',
       password: '123',
-      tokenId:
-        '4cc2b8a24fe082de8ea4ced09af2c9d22467a5c3799bda4da4c8ed5059c38c',
+      tokenId: '985ad792cef8d0b893b3a2f7349213106a9c96e35f1de582922e757cf8de8364',
     }),
+
     User.create({
       email: 'stephen@email.com',
       password: '321',
       tokenId: '3ce0c3bd839d10e849d54d4422104ee521f39effe3c4d9f925ed292434364f',
     }),
+
     User.create({
       email: 'preet@email.com',
       password: '1234',
       tokenId:
         '3b56b089b21077b46971a5c33e1cf718d68c3d4ddd7f129d123ffe7f9f011ab',
     }),
+
     User.create({
       email: 'sanjeev@email.com',
       password: '4321',
@@ -44,8 +46,10 @@ async function seed() {
       sadness: '0.01',
       surprise: '0.068',
       userTokenId:
-        '4cc2b8a24fe082de8ea4ced09af2c9d22467a5c3799bda4da4c8ed5059c38c',
+        '985ad792cef8d0b893b3a2f7349213106a9c96e35f1de582922e757cf8de8364',
+      userId: 1,
     }),
+
     Emotion.create({
       url: 'google.com',
       anger: '0',
@@ -58,7 +62,9 @@ async function seed() {
       surprise: '0.068',
       userTokenId:
         '3ce0c3bd839d10e849d54d4422104ee521f39effe3c4d9f925ed292434364f',
+      userId: 2,
     }),
+
     Emotion.create({
       url: 'google.com',
       anger: '0',
@@ -71,7 +77,9 @@ async function seed() {
       surprise: '0.068',
       userTokenId:
         '3b56b089b21077b46971a5c33e1cf718d68c3d4ddd7f129d123ffe7f9f011ab',
+      userId: 3,
     }),
+
     Emotion.create({
       url: 'google.com',
       anger: '0',
@@ -84,6 +92,7 @@ async function seed() {
       surprise: '0.068',
       userTokenId:
         'd19c8d2f61d45395f1d897faf33d35ec97e9a021509cdb3614c7bc4c4fb27b',
+      userId: 4,
     }),
   ]);
 
