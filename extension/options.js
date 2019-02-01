@@ -1,4 +1,6 @@
 const video = document.getElementById('live-video');
+const startButton = document.getElementById('start-button');
+const stopButton = document.getElementById('stop-button');
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -65,18 +67,18 @@ const takePicture = () => {
 const userTokenId = () => {
   // USE THIS TO RESET YOUR TOKEN
   // try {
-  // 	function deleteUserIdFromStorage(callback) {
-  // 		chrome.storage.sync.remove('userid', function() {
-  // 			callback();
-  // 		});
-  // 	}
+  //   function deleteUserIdFromStorage(callback) {
+  //     chrome.storage.sync.remove('userid', function() {
+  //       callback();
+  //     });
+  //   }
   // } catch (error) {
-  // 	console.log(chrome.runtime.lastError);
+  //   console.log(chrome.runtime.lastError);
   // }
-  // async function deltedToken() {
-  // 	console.log('deleted');
+  // async function deletedToken() {
+  //   console.log('deleted');
   // }
-  // deleteUserIdFromStorage(deltedToken);
+  // deleteUserIdFromStorage(deletedToken);
 
   async function getUserIdFromStorage(callback) {
     await chrome.storage.sync.get('userid', async items => {
@@ -106,6 +108,11 @@ const userTokenId = () => {
 
 userTokenId();
 
-setInterval(() => {
-  takePicture();
-}, 5000);
+let interval;
+startButton.onclick = function() {
+  interval = setInterval(takePicture, 5000);
+};
+
+stopButton.onclick = function() {
+  clearInterval(interval);
+};

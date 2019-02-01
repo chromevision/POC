@@ -38,13 +38,13 @@ authForm.onsubmit = evt => {
     userObj.password = evt.target[1].value;
     userObj.tokenId = token;
 
-    const updateURI = 'http://localhost:8080/api/auth/login';
+    const updateURI = 'http://localhost:8080/auth/login';
 
     console.log(userObj);
 
     await fetch(updateURI, {
       method: 'PUT',
-      body: userObj,
+      body: JSON.stringify(userObj),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
