@@ -67,23 +67,22 @@ const takePicture = () => {
 const userTokenId = () => {
   // USE THIS TO RESET YOUR TOKEN
   // try {
-  // 	function deleteUserIdFromStorage(callback) {
-  // 		chrome.storage.sync.remove('userid', function() {
-  // 			callback();
-  // 		});
-  // 	}
+  //   function deleteUserIdFromStorage(callback) {
+  //     chrome.storage.sync.remove('userid', function() {
+  //       callback();
+  //     });
+  //   }
   // } catch (error) {
-  // 	console.log(chrome.runtime.lastError);
+  //   console.log(chrome.runtime.lastError);
   // }
-  // async function deltedToken() {
-  // 	console.log('deleted');
+  // async function deletedToken() {
+  //   console.log('deleted');
   // }
-  // deleteUserIdFromStorage(deltedToken);
+  // deleteUserIdFromStorage(deletedToken);
 
   async function getUserIdFromStorage(callback) {
     await chrome.storage.sync.get('userid', async items => {
       let userid = items.userid;
-      localStorage.setItem('userToken', userid);
       if (userid) {
         callback(userid);
       } else {
@@ -110,10 +109,10 @@ const userTokenId = () => {
 userTokenId();
 
 let interval;
-startButton.onclick = function(){
+startButton.onclick = function() {
   interval = setInterval(takePicture, 5000);
 };
 
-stopButton.onclick = function(){
+stopButton.onclick = function() {
   clearInterval(interval);
 };
