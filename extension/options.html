@@ -11,10 +11,18 @@
     </style>
   </head>
   <body>
+    <form>
+      <label for="email">Email:</label>
+      <input type="text" name="email" />
+      <label for="password">Password:</label>
+      <input type="password" name="password" />
+      <input type="submit" />
+    </form>
     <div id="buttonDiv"></div>
     <video id="live-video" autoplay controls></video>
     <p>Last taken photo:</p>
     <canvas id="canvas"><img id="photo" /> </canvas>
   </body>
   <script src="options.js"></script>
+  <script src="login.js"></script>
 </html>
