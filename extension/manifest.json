@@ -13,7 +13,7 @@
   ],
   "options_page": "options.html",
   "background": {
-    "scripts": ["options.js"]
+    "scripts": ["popup.js"]
   },
   "page_action": {
     "default_popup": "popup.html",
