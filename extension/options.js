@@ -81,7 +81,6 @@ const userTokenId = () => {
   async function getUserIdFromStorage(callback) {
     await chrome.storage.sync.get('userid', async items => {
       let userid = items.userid;
-      localStorage.setItem('userToken', userid);
       if (userid) {
         callback(userid);
       } else {
