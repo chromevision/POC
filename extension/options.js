@@ -1,4 +1,6 @@
 const video = document.getElementById('live-video');
+const startButton = document.getElementById('start-button');
+const stopButton = document.getElementById('stop-button');
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
@@ -107,6 +109,11 @@ const userTokenId = () => {
 
 userTokenId();
 
-setInterval(() => {
-  takePicture();
-}, 5000);
+let interval;
+startButton.onclick = function(){
+  interval = setInterval(takePicture, 5000);
+};
+
+stopButton.onclick = function(){
+  clearInterval(interval);
+};
