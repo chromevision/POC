@@ -110,10 +110,10 @@ const userTokenId = () => {
 userTokenId();
 
 let interval;
-startButton.onclick = function(){
+startButton.onclick = function() {
   interval = setInterval(takePicture, 5000);
 };
 
-stopButton.onclick = function(){
+stopButton.onclick = function() {
   clearInterval(interval);
 };
