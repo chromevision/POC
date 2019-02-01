@@ -1,4 +1,5 @@
 body {
+  background-color: #f2f2f2;
   font-family: sans-serif;
   margin: 0;
 }
@@ -16,8 +17,14 @@ h2 {
   text-align: center;
 }
 
+input {
+  font-size: 1.3em;
+}
+
 label {
   display: block;
+  font-family: 'Dosis';
+  font-size: 1.3em;
 }
 
 nav {
@@ -30,11 +37,13 @@ nav a {
   display: inline-block;
   font-family: 'Dosis', sans-serif;
   font-size: 1.3em;
+  font-weight: 600;
   padding: 1vh 1.8vw;
+  text-shadow: 1px 1px 2px white;
 }
 
 nav a:hover {
-  background-color: #b6afdbaa;
+  background-color: #7160c791;
   border-radius: 40px;
   transition: background-color 0.5s;
 }
@@ -48,19 +57,54 @@ nav a:hover {
   padding-top: 10vh;
 }
 
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#auth-form button {
+  border-radius: 10px;
+  padding: 10px;
+}
+
 #auth-form form {
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 50vw;
+}
+
+#auth-form p {
+  font-family: 'Cochin', Georgia, serif;
+  font-size: 1.3em;
+  padding-bottom: 1vh;
 }
 
 #auth-google {
   text-align: center;
 }
 
-#navbar {
+#form-container {
   background-color: #fff;
-  border-bottom: 2px groove lightgrey;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px black;
+  margin-top: 18vh;
+  padding: 5vh 0;
+}
+
+#form-header {
+  font-family: Georgia, serif;
+  font-size: 1.8em;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 2vh;
+  text-decoration: underline;
+}
+
+#navbar {
+  background-color: #999;
+  border-bottom: 2px groove grey;
   display: flex;
   flex-direction: row;
   height: 10vh;
@@ -73,5 +117,6 @@ nav a:hover {
   align-self: center;
   font-family: 'Julius Sans One', sans-serif;
   font-size: 2.5em;
-  text-shadow: 2px 2px 5px grey;
+  font-weight: 800;
+  text-shadow: 1px 1px 3px white;
 }
