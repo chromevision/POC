@@ -16,7 +16,7 @@ const AuthForm = props => {
 
   return (
     <div id="auth-form" className="sub-nav">
-      <div id="form-container">
+      <div id="form-container" className="container">
         <form onSubmit={handleSubmit} name={name}>
           <h2 id="form-header">{displayName}</h2>
           <div>
