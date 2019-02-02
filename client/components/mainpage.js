@@ -29,7 +29,6 @@ const MainPage = () => {
           personal emotional data, and keep no record of any image or video data
           that is collected from your webcam.
         </p>
-        <p>Happy browsing!</p>
       </div>
     </div>
   );
