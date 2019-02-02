@@ -9,8 +9,8 @@ const dataRadar = {
     'Disgust',
     'Fear',
     'Happiness',
-    'neutral',
-    'Saddness',
+    'Neutrality',
+    'Sadness',
     'Surprise',
   ],
   datasets: [
@@ -29,13 +29,13 @@ const dataRadar = {
 
 const dataLine = {
   labels: [
-    '01/24/18',
-    '01/25/18',
-    '01/26/18',
-    '01/27/18',
-    '01/28/18',
-    '01/29/18',
-    '01/20/18',
+    '01/24/19',
+    '01/25/19',
+    '01/26/19',
+    '01/27/19',
+    '01/28/19',
+    '01/29/19',
+    '01/30/19',
   ],
   datasets: [
     {
@@ -82,10 +82,12 @@ class Graph extends Component {
     console.log(this.state.emotions);
     return (
       <div className="sub-nav">
-        <h2> Your Google Snapshot: </h2>
-        <Radar data={dataRadar} />
-        <h2> Happiness trends while on Google: </h2>
-        <Line data={dataLine} />
+        <div className="container">
+          <h2> Your Google Snapshot: </h2>
+          <Radar data={dataRadar} />
+          <h2> Happiness trends while on Google: </h2>
+          <Line style={{ width: '600px' }} data={dataLine} />
+        </div>
       </div>
     );
   }

@@ -7,7 +7,9 @@ import { logout } from '../store';
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="fixed">
     <div id="navbar">
-      <h1>ChromeVision</h1>
+      <Link to="/" id="nav-logo">
+        ChromeVision
+      </Link>
       <nav>
         {isLoggedIn ? (
           <div>
