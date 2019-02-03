@@ -33,6 +33,9 @@ export const datafyLine = (arr, emotion) => {
         dates.push(`${arr[i][key].slice(0, 10)}`);
       }
     }
+    data.map(number => {
+      return number*100;
+    });
   }
 
   return {
@@ -42,8 +45,8 @@ export const datafyLine = (arr, emotion) => {
         label: emotion,
         fill: false,
         lineTension: 0.1,
-        backgroundColor: 'rgba(75,192,192,0.4)',
-        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: 'rgba(255,99,132,1)',
+        borderColor: 'rgba(255,99,132,1)',
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
