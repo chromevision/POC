@@ -26,18 +26,16 @@ export const datafyLine = (arr, emotion) => {
   let dates = [];
   for(let i = 0; i < arr.length; i++){
     for(let key in arr[i]){
-      if(key === emotion){
-        data.push(arr[i][key]);
-      }
-      if(key === 'createdAt'){
-        dates.push(`${arr[i][key].slice(0, 10)}`);
+      if(arr[i].hasOwnProperty(key)){
+        if(key === emotion){
+          data.push(arr[i][key]);
+        }
+        if(key === 'createdAt'){
+          dates.push(`${arr[i][key].slice(0, 10)}`);
+        }
       }
     }
-    data.map(number => {
-      return number*100;
-    });
   }
-
   return {
     labels: dates,
     datasets: [
@@ -65,4 +63,6 @@ export const datafyLine = (arr, emotion) => {
     ]
   };
 };
+
+
 
