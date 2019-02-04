@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Radar, Line } from 'react-chartjs-2';
 import { datafyArr, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
+import UserEmotionsLine from './UserEmotionsLine';
 
 class UserHome extends Component {
 	componentDidMount() {
@@ -12,15 +13,6 @@ class UserHome extends Component {
 	}
 
 	render() {
-		let emo = [];
-		let forLine = [];
-		console.log('asdfasdf', this.props.Emotions);
-		if (this.props.Emotions.length !== 0) {
-			// emo = datafyArr(this.props.Emotions);
-			forLine = datafyLine(this.props.Emotions, 'happiness');
-			// console.log(emo);
-			console.log(forLine);
-		}
 		const dataRadar = {
 			labels: [
 				'anger',
@@ -49,15 +41,12 @@ class UserHome extends Component {
 		return (
 			<div className="sub-nav container">
 				<h1> Your Web Snapshot: </h1>
-				<Radar data={dataRadar} />
-				<h1> Happiness trends while on the Web: </h1>
-				<Line data={datafyLine(this.props.Emotions, 'happiness')} />
-				<h1> Sadness trends while on the Web: </h1>
-				<Line data={datafyLine(this.props.Emotions, 'sadness')} />
-				<h1> Anger trends while on the Web: </h1>
-				<Line data={datafyLine(this.props.Emotions, 'anger')} />
-				<h1> Contempt trends while on the Web: </h1>
-				<Line data={datafyLine(this.props.Emotions, 'contempt')} />
+				<div>
+					<Radar data={dataRadar} />
+				</div>
+				<div>
+					<UserEmotionsLine />
+				</div>
 			</div>
 		);
 	}
