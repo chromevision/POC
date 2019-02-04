@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Radar, Line } from 'react-chartjs-2';
-import { datafyArr, datafyLine } from '../utils/chartJsHelper';
+import { datafyRadar, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
 
 class Graph extends Component {
@@ -21,35 +21,11 @@ class Graph extends Component {
       // console.log(emo);
       console.log(forLine);
     }
-    const dataRadar = {
-      labels: [
-        'anger',
-        'contempt',
-        'disgust',
-        'fear',
-        'happiness',
-        'neutral',
-        'sadness',
-        'surprise',
-      ],
-      datasets: [
-        {
-          label: 'Snapshot:',
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
-          pointBackgroundColor: 'rgba(255,99,132,1)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(255,99,132,1)',
-          data: [20, 22, 29, 8, 70, 30, 33, 60],
-        },
-      ],
-    };
 
     return (
       <div className="sub-nav container">
         <h1> Your Web Snapshot: </h1>
-        <Radar data={dataRadar} />
+        <Radar data={datafyRadar(this.props.Emotions)} />
         <h1> Happiness trends while on the Web: </h1>
         <Line data={datafyLine(this.props.Emotions, 'happiness')} />
         <h1> Sadness trends while on the Web: </h1>

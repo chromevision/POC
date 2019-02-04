@@ -1,11 +1,10 @@
 
 export const datafyRadar = (arr) => {
-  // console.log(arr);
   let values = [];
-  let keys = [];
+  console.log(arr);
   arr.map(n => {
-    values.push(Object.values(n).slice(2,9));
-    keys.push(Object.keys(n).slice(2,9));
+    values.push(Object.values(n).slice(2,10));
+    // keys.push(Object.keys(n).slice(2,9));
   });
   // console.log(keys, values);
   // const keysArr = keys[0];
@@ -17,9 +16,53 @@ export const datafyRadar = (arr) => {
 
   //   }
   // }
-  // console.log(values);
-  return [keys[0], values[4]];
-};
+  // console.log(values[4]);
+  return {
+    labels: [
+      'anger',
+      'contempt',
+      'disgust',
+      'fear',
+      'happiness',
+      'neutral',
+      'sadness',
+      'surprise',
+    ],
+    datasets: [
+      {
+        label: 'Snapshot:',
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        pointBackgroundColor: 'rgba(255,99,132,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255,99,132,1)',
+        data: avgOfEmotionValues(values)
+      },
+    ],
+  };
+}
+
+// console.log("avgOfEmotionValues", avgOfEmotionValues(values))
+const avgOfEmotionValues = (arr) => {
+  // console.log("this is running")
+  console.log(arr);
+  let arrOfAvgs = [];
+  let sum = 0;
+
+  // for (let i = 0; i < arr[0].length; i++) {
+  console.log(arr[arr.length - 1]);
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      sum += arr[j][i]
+      // console.log(arr[j])
+    }
+    arrOfAvgs.push(sum/arr.length);
+    sum = 0;
+  }
+  console.log('arrOfAvg', arrOfAvgs)
+  return arrOfAvgs;
+}
 
 export const datafyLine = (arr, emotion) => {
   let data = [];
@@ -63,6 +106,3 @@ export const datafyLine = (arr, emotion) => {
     ]
   };
 };
-
-
-
