@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.sub-nav {
+  padding-top: 10vh;
+}
+
+#navbar {
+  background-color: #999;
+  border-bottom: 2px groove grey;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  padding: 0 2vw;
+  width: 96vw;
+}
+
+#navbar h1 {
+  font-size: 4em;
+}
+
+#nav-logo {
+  align-self: center;
+  color: black;
+  font-family: 'Julius Sans One', sans-serif;
+  font-weight: 800;
+  text-shadow: 1px 1px 3px white;
+}
