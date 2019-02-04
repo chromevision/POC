@@ -5,11 +5,12 @@ import axios from 'axios';
 import { Radar, Line } from 'react-chartjs-2';
 import { datafyRadar, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
+import UserEmotionsLine from './UserEmotionsLine';
 
-class Graph extends Component {
-  componentDidMount() {
-    this.props.getAllEmotions(this.props.User);
-  }
+class UserHome extends Component {
+	componentDidMount() {
+		this.props.getAllEmotions(this.props.User);
+	}
 
   render() {
     let emo = [];
@@ -40,16 +41,16 @@ class Graph extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
-  };
+	return {
+		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+	};
 };
 
 const mapStateToProps = state => {
-  return {
-    User: state.user.id,
-    Emotions: state.emotions,
-  };
+	return {
+		User: state.user.id,
+		Emotions: state.emotions
+	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Graph);
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
