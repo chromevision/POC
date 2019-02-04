@@ -5,75 +5,64 @@ import axios from 'axios';
 import { Radar, Line } from 'react-chartjs-2';
 import { datafyArr, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
+import UserEmotionsLine from './UserEmotionsLine';
 
-class Graph extends Component {
-  componentDidMount() {
-    this.props.getAllEmotions(this.props.User);
-  }
+class UserHome extends Component {
+	componentDidMount() {
+		this.props.getAllEmotions(this.props.User);
+	}
 
-  render() {
-    let emo = [];
-    let forLine = [];
-    console.log('asdfasdf', this.props.Emotions);
-    if (this.props.Emotions.length !== 0) {
-      // emo = datafyArr(this.props.Emotions);
-      forLine = datafyLine(this.props.Emotions, 'happiness');
-      // console.log(emo);
-      console.log(forLine);
-    }
-    const dataRadar = {
-      labels: [
-        'anger',
-        'contempt',
-        'disgust',
-        'fear',
-        'happiness',
-        'neutral',
-        'sadness',
-        'surprise',
-      ],
-      datasets: [
-        {
-          label: 'Snapshot:',
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
-          pointBackgroundColor: 'rgba(255,99,132,1)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(255,99,132,1)',
-          data: [20, 22, 29, 8, 70, 30, 33, 60],
-        },
-      ],
-    };
+	render() {
+		const dataRadar = {
+			labels: [
+				'anger',
+				'contempt',
+				'disgust',
+				'fear',
+				'happiness',
+				'neutral',
+				'sadness',
+				'surprise'
+			],
+			datasets: [
+				{
+					label: 'Snapshot:',
+					backgroundColor: 'rgba(255,99,132,0.2)',
+					borderColor: 'rgba(255,99,132,1)',
+					pointBackgroundColor: 'rgba(255,99,132,1)',
+					pointBorderColor: '#fff',
+					pointHoverBackgroundColor: '#fff',
+					pointHoverBorderColor: 'rgba(255,99,132,1)',
+					data: [20, 22, 29, 8, 70, 30, 33, 60]
+				}
+			]
+		};
 
-    return (
-      <div className="sub-nav container">
-        <h1> Your Web Snapshot: </h1>
-        <Radar data={dataRadar} />
-        <h1> Happiness trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'happiness')} />
-        <h1> Sadness trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'sadness')} />
-        <h1> Anger trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'anger')} />
-        <h1> Contempt trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'contempt')}/>
-      </div>
-    );
-  }
+		return (
+			<div className="sub-nav container">
+				<h1> Your Web Snapshot: </h1>
+				<div>
+					<Radar data={dataRadar} />
+				</div>
+				<div>
+					<UserEmotionsLine />
+				</div>
+			</div>
+		);
+	}
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
-  };
+	return {
+		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+	};
 };
 
 const mapStateToProps = state => {
-  return {
-    User: state.user.id,
-    Emotions: state.emotions,
-  };
+	return {
+		User: state.user.id,
+		Emotions: state.emotions
+	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Graph);
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
