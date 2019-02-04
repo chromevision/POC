@@ -1,0 +1,74 @@
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Radar, Line } from 'react-chartjs-2';
+import { datafyArr, datafyLine } from '../utils/chartJsHelper';
+import { getAllEmotionsThunk } from '../store/emotions';
+import UserEmotionsLine from './UserEmotionsLine';
+import { Container } from 'semantic-ui-react';
+
+class UserEmotionsRadar extends Component {
+	componentDidMount() {
+		this.props.getAllEmotions(this.props.User);
+	}
+
+	render() {
+		let emo = [];
+		let forLine = [];
+		console.log('asdfasdf', this.props.Emotions);
+		if (this.props.Emotions.length !== 0) {
+			// emo = datafyArr(this.props.Emotions);
+			forLine = datafyLine(this.props.Emotions, 'happiness');
+			// console.log(emo);
+			console.log(forLine);
+		}
+		const dataRadar = {
+			labels: [
+				'anger',
+				'contempt',
+				'disgust',
+				'fear',
+				'happiness',
+				'neutral',
+				'sadness',
+				'surprise'
+			],
+			datasets: [
+				{
+					label: 'Snapshot:',
+					backgroundColor: 'rgba(255,99,132,0.2)',
+					borderColor: 'rgba(255,99,132,1)',
+					pointBackgroundColor: 'rgba(255,99,132,1)',
+					pointBorderColor: '#fff',
+					pointHoverBackgroundColor: '#fff',
+					pointHoverBorderColor: 'rgba(255,99,132,1)',
+					data: [20, 22, 29, 8, 70, 30, 33, 60]
+				}
+			]
+		};
+
+		return (
+			<div className="sub-nav container">
+				<Container>
+					<Radar data={dataRadar} />
+				</Container>
+			</div>
+		);
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+	};
+};
+
+const mapStateToProps = state => {
+	return {
+		User: state.user.id,
+		Emotions: state.emotions
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserEmotionsRadar);
