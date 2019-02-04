@@ -1,9 +1,8 @@
-
-export const datafyRadar = (arr) => {
+export const datafyRadar = arr => {
   let values = [];
   console.log(arr);
   arr.map(n => {
-    values.push(Object.values(n).slice(2,10));
+    values.push(Object.values(n).slice(2, 10));
     // keys.push(Object.keys(n).slice(2,9));
   });
   // console.log(keys, values);
@@ -37,14 +36,14 @@ export const datafyRadar = (arr) => {
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(255,99,132,1)',
-        data: avgOfEmotionValues(values)
+        data: avgOfEmotionValues(values),
       },
     ],
   };
-}
+};
 
 // console.log("avgOfEmotionValues", avgOfEmotionValues(values))
-const avgOfEmotionValues = (arr) => {
+const avgOfEmotionValues = arr => {
   // console.log("this is running")
   console.log(arr);
   let arrOfAvgs = [];
@@ -54,26 +53,26 @@ const avgOfEmotionValues = (arr) => {
   console.log(arr[arr.length - 1]);
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < arr.length - 1; j++) {
-      sum += arr[j][i]
+      sum += arr[j][i];
       // console.log(arr[j])
     }
-    arrOfAvgs.push(sum/arr.length);
+    arrOfAvgs.push(sum / arr.length);
     sum = 0;
   }
-  console.log('arrOfAvg', arrOfAvgs)
+  console.log('arrOfAvg', arrOfAvgs);
   return arrOfAvgs;
-}
+};
 
 export const datafyLine = (arr, emotion) => {
   let data = [];
   let dates = [];
-  for(let i = 0; i < arr.length; i++){
-    for(let key in arr[i]){
-      if(arr[i].hasOwnProperty(key)){
-        if(key === emotion){
+  for (let i = 0; i < arr.length; i++) {
+    for (let key in arr[i]) {
+      if (arr[i].hasOwnProperty(key)) {
+        if (key === emotion) {
           data.push(arr[i][key]);
         }
-        if(key === 'createdAt'){
+        if (key === 'createdAt') {
           dates.push(`${arr[i][key].slice(0, 10)}`);
         }
       }
@@ -101,8 +100,8 @@ export const datafyLine = (arr, emotion) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: data
-      }
-    ]
+        data: data,
+      },
+    ],
   };
 };

@@ -33,7 +33,7 @@ class Graph extends Component {
         <h1> Anger trends while on the Web: </h1>
         <Line data={datafyLine(this.props.Emotions, 'anger')} />
         <h1> Contempt trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'contempt')}/>
+        <Line data={datafyLine(this.props.Emotions, 'contempt')} />
       </div>
     );
   }
