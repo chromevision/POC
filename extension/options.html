@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-        margin: 10px;
-      }
-    </style>
+    <title>ChromeVision Extension</title>
+    <link rel="stylesheet" href="./extension.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Dosis|Julius+Sans+One"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <form>
-      <label for="email">Email:</label>
-      <input type="text" name="email" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" />
-      <input type="submit" />
-    </form>
-    <div id="buttonDiv"></div>
-    <video id="live-video" autoplay controls></video>
-    <div id="buttonDiv">
-      <button type="button" id ="start-button">Start</button>
-      <button type="button" id="stop-button">Stop</button>
+    <div class="fixed">
+      <div id="navbar">
+        <h1 id="nav-logo">
+          ChromeVision
+        </h1>
+      </div>
     </div>
-    <p>Last taken photo:</p>
-    <canvas id="canvas"><img id="photo" /> </canvas>
+    <div class="sub-nav">
+      <span id="login-form">
+        <form class="margin-top" id="login-form">
+          <p>Please login to the <strong>ChromeVision</strong> extension.</p>
+          <label for="email">Email:</label>
+          <input type="text" name="email" required />
+          <label for="password">Password:</label>
+          <input type="password" name="password" required />
+          <button type="submit" id="login-button">Log In</button>
+          <span id="feedback"></span>
+        </form>
+      </span>
+      <span class="hidden" id="content">
+        <div id="buttonDiv"></div>
+        <video id="live-video" autoplay controls></video>
+        <div id="buttonDiv">
+          <button type="button" id="start-button">Start</button>
+          <button type="button" id="stop-button">Stop</button>
+        </div>
+        <p>Last taken photo:</p>
+        <canvas id="canvas"><img id="photo" /> </canvas>
+      </span>
+    </div>
   </body>
   <script src="options.js"></script>
   <script src="login.js"></script>
