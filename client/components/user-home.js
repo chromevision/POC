@@ -7,9 +7,9 @@ import { datafyRadar, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
 
 class UserHome extends Component {
-	componentDidMount() {
-		this.props.getAllEmotions(this.props.User);
-	}
+  componentDidMount() {
+    this.props.getAllEmotions(this.props.User);
+  }
 
   render() {
     let emo = [];
@@ -24,6 +24,8 @@ class UserHome extends Component {
 
     return (
       <div className="sub-nav container">
+        <h1> Number of Pictures Captured </h1>
+        <p>{this.props.Emotions.length}</p>
         <h1> Your Web Snapshot: </h1>
         <Radar data={datafyRadar(this.props.Emotions)} />
         <h1> Happiness trends while on the Web: </h1>
@@ -40,16 +42,16 @@ class UserHome extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-	return {
-		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
-	};
+  return {
+    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
+  };
 };
 
 const mapStateToProps = state => {
-	return {
-		User: state.user.id,
-		Emotions: state.emotions
-	};
+  return {
+    User: state.user.id,
+    Emotions: state.emotions,
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
