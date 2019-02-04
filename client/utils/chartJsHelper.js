@@ -1,36 +1,62 @@
-
-export const datafyRadar = (arr) => {
-  // console.log(arr);
+export const datafyRadar = arr => {
   let values = [];
-  let keys = [];
   arr.map(n => {
-    values.push(Object.values(n).slice(2,9));
-    keys.push(Object.keys(n).slice(2,9));
+    values.push(Object.values(n).slice(2, 10));
   });
-  // console.log(keys, values);
-  // const keysArr = keys[0];
-  // console.log(keysArr);
-  // const valuesArr = values[0];
-  // console.log(valuesArr);
-  // for(let i = 0; i < values.length; i++){
-  //   for(let j = 0; j < i.lenght; j++){
 
-  //   }
-  // }
-  // console.log(values);
-  return [keys[0], values[4]];
+  return {
+    labels: [
+      'anger',
+      'contempt',
+      'disgust',
+      'fear',
+      'happiness',
+      'neutral',
+      'sadness',
+      'surprise',
+    ],
+    datasets: [
+      {
+        label: 'Snapshot:',
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        pointBackgroundColor: 'rgba(255,99,132,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255,99,132,1)',
+        data: avgOfEmotionValues(values),
+      },
+    ],
+  };
+};
+
+const avgOfEmotionValues = arr => {
+  console.log(arr);
+  let arrOfAvgs = [];
+  let sum = 0;
+
+  console.log(arr[arr.length - 1]);
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      sum += arr[j][i] * 1;
+    }
+    arrOfAvgs.push((sum / arr.length).toFixed(4));
+    sum = 0;
+  }
+  console.log('arrOfAvg', arrOfAvgs);
+  return arrOfAvgs;
 };
 
 export const datafyLine = (arr, emotion) => {
   let data = [];
   let dates = [];
-  for(let i = 0; i < arr.length; i++){
-    for(let key in arr[i]){
-      if(arr[i].hasOwnProperty(key)){
-        if(key === emotion){
+  for (let i = 0; i < arr.length; i++) {
+    for (let key in arr[i]) {
+      if (arr[i].hasOwnProperty(key)) {
+        if (key === emotion) {
           data.push(arr[i][key]);
         }
-        if(key === 'createdAt'){
+        if (key === 'createdAt') {
           dates.push(`${arr[i][key].slice(0, 10)}`);
         }
       }
@@ -58,11 +84,8 @@ export const datafyLine = (arr, emotion) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: data
-      }
-    ]
+        data: data,
+      },
+    ],
   };
 };
-
-
-
