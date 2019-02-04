@@ -1,4 +1,5 @@
 export const datafyRadar = arr => {
+  let values = [];
   arr.map(n => {
     values.push(Object.values(n).slice(2, 10));
   });
@@ -46,17 +47,16 @@ const avgOfEmotionValues = arr => {
   return arrOfAvgs;
 };
 
-
 export const datafyLine = (arr, emotion) => {
   let data = [];
   let dates = [];
-  for(let i = 0; i < arr.length; i++){
-    for(let key in arr[i]){
-      if(arr[i].hasOwnProperty(key)){
-        if(key === emotion){
+  for (let i = 0; i < arr.length; i++) {
+    for (let key in arr[i]) {
+      if (arr[i].hasOwnProperty(key)) {
+        if (key === emotion) {
           data.push(arr[i][key]);
         }
-        if(key === 'createdAt'){
+        if (key === 'createdAt') {
           dates.push(`${arr[i][key].slice(0, 10)}`);
         }
       }
@@ -84,11 +84,8 @@ export const datafyLine = (arr, emotion) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: data
-      }
-    ]
+        data: data,
+      },
+    ],
   };
 };
-
-
-
