@@ -18,15 +18,14 @@
     </div>
     <div class="sub-nav">
       <span id="login-form">
-        <form class="margin-top">
-          <p>
-            Please login to the <strong>ChromeVision</strong> extension.
-          </p>
+        <form class="margin-top" id="login-form">
+          <p>Please login to the <strong>ChromeVision</strong> extension.</p>
           <label for="email">Email:</label>
           <input type="text" name="email" required />
           <label for="password">Password:</label>
           <input type="password" name="password" required />
           <button type="submit" id="login-button">Log In</button>
+          <span id="feedback"></span>
         </form>
       </span>
       <span class="hidden" id="content">
@@ -43,5 +42,4 @@
   </body>
   <script src="options.js"></script>
   <script src="login.js"></script>
-  <script src="switchView.js"></script>
 </html>

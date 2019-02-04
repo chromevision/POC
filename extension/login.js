@@ -1,4 +1,6 @@
 const authForm = document.getElementsByTagName('form')[0];
+const contentToShow = document.getElementById('content');
+const feedbackMessage = document.getElementById('feedback');
 
 authForm.onsubmit = evt => {
   evt.preventDefault();
@@ -42,7 +44,7 @@ authForm.onsubmit = evt => {
 
     console.log(userObj);
 
-    await fetch(updateURI, {
+    const response = await fetch(updateURI, {
       method: 'PUT',
       body: JSON.stringify(userObj),
       headers: {
@@ -50,5 +52,17 @@ authForm.onsubmit = evt => {
         'Content-Type': 'application/json',
       },
     });
+
+    if (response.status === 200) {
+      switchView();
+    } else {
+      feedbackMessage.textContent =
+        'Your username/password combination is invalid.\nPlease make sure you have already signed up through our web application, and that you have entered the correct username and password.';
+    }
   }
 };
+
+function switchView() {
+  authForm.classList.toggle('hidden');
+  contentToShow.classList.toggle('hidden');
+}

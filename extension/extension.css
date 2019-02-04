@@ -28,7 +28,7 @@ form input {
   width: 28vw;
 }
 
-form p {
+form p, #feedback {
   font-family: 'Cochin', Georgia, serif;
   font-size: 1.5em;
   padding-bottom: 2vh;
@@ -44,11 +44,15 @@ form p {
 }
 
 .margin-top {
-  margin-top: 25vh;
+  margin-top: 20vh;
 }
 
 .sub-nav {
   padding-top: 10vh;
+}
+
+#feedback {
+  padding: 2vh 25vw;
 }
 
 #navbar {
