@@ -48,44 +48,47 @@ const avgOfEmotionValues = arr => {
 
 
 export const datafyLine = (arr, emotion) => {
-	let data = [];
-	let dates = [];
-	for (let i = 0; i < arr.length; i++) {
-		for (let key in arr[i]) {
-			if (arr[i].hasOwnProperty(key)) {
-				if (key === emotion.toLowerCase()) {
-					data.push(arr[i][key]);
-				}
-				if (key === 'createdAt') {
-					dates.push(`${arr[i][key].slice(0, 10)}`);
-				}
-			}
-		}
-	}
-	return {
-		labels: dates,
-		datasets: [
-			{
-				label: emotion,
-				fill: false,
-				lineTension: 0.1,
-				backgroundColor: 'rgba(255,99,132,1)',
-				borderColor: 'rgba(255,99,132,1)',
-				borderCapStyle: 'butt',
-				borderDash: [],
-				borderDashOffset: 0.0,
-				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgba(75,192,192,1)',
-				pointBackgroundColor: '#fff',
-				pointBorderWidth: 1,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-				pointHoverBorderColor: 'rgba(220,220,220,1)',
-				pointHoverBorderWidth: 2,
-				pointRadius: 1,
-				pointHitRadius: 10,
-				data: data
-			}
-		]
-	};
+  let data = [];
+  let dates = [];
+  for(let i = 0; i < arr.length; i++){
+    for(let key in arr[i]){
+      if(arr[i].hasOwnProperty(key)){
+        if(key === emotion){
+          data.push(arr[i][key]);
+        }
+        if(key === 'createdAt'){
+          dates.push(`${arr[i][key].slice(0, 10)}`);
+        }
+      }
+    }
+  }
+  return {
+    labels: dates,
+    datasets: [
+      {
+        label: emotion,
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(255,99,132,1)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(75,192,192,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: data
+      }
+    ]
+  };
 };
+
+
+

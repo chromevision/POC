@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Radar, Line } from 'react-chartjs-2';
 import { datafyRadar, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
-import UserEmotionsLine from './UserEmotionsLine';
 
 class UserHome extends Component {
 	componentDidMount() {
