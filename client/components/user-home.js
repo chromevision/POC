@@ -13,15 +13,6 @@ class UserHome extends Component {
 	}
 
 	render() {
-		let emo = [];
-		let forLine = [];
-		console.log('asdfasdf', this.props.Emotions);
-		if (this.props.Emotions.length !== 0) {
-			// emo = datafyArr(this.props.Emotions);
-			forLine = datafyLine(this.props.Emotions, 'happiness');
-			// console.log(emo);
-			console.log(forLine);
-		}
 		const dataRadar = {
 			labels: [
 				'anger',
