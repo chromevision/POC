@@ -6,93 +6,93 @@ import { logout } from '../store';
 import { Menu } from 'semantic-ui-react';
 
 class Navbar extends Component {
-	state = { activeItem: 'home' };
+  state = { activeItem: 'home' };
 
-	handleItemClick = (evt, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (evt, { name }) => this.setState({ activeItem: name });
 
-	handleLogOut() {
-		this.props.logout();
-	}
+  handleLogOut() {
+    this.props.logout();
+  }
 
-	render() {
-		const { activeItem } = this.state;
-		const { isLoggedIn } = this.props;
-		return (
-			<div>
-				<Menu pointing size="massive">
-					<Menu.Item
-						header
-						as={Link}
-						to="/"
-						name="ChromeVision"
-						icon="eye"
-						color="pink"
-						onClick={this.handleItemClick}
-					/>
+  render() {
+    const { activeItem } = this.state;
+    const { isLoggedIn } = this.props;
+    return (
+      <div>
+        <Menu pointing attached size="massive">
+          <Menu.Item
+            header
+            as={Link}
+            to="/"
+            name="ChromeVision"
+            icon="eye"
+            color="pink"
+            onClick={this.handleItemClick}
+          />
 
-					<Menu.Item
-						as={Link}
-						to="/"
-						name="home"
-						active={activeItem === 'home'}
-						onClick={this.handleItemClick}
-					/>
-					<Menu.Item
-						as={Link}
-						to="/home"
-						name="charts"
-						active={activeItem === 'charts'}
-						onClick={this.handleItemClick}
-					/>
+          <Menu.Item
+            as={Link}
+            to="/"
+            name="home"
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={Link}
+            to="/home"
+            name="charts"
+            active={activeItem === 'charts'}
+            onClick={this.handleItemClick}
+          />
 
-					<Menu.Menu position="right">
-						{!isLoggedIn ? (
-							<Menu pointing size="massive">
-								<Menu.Item
-									as={Link}
-									to="/login"
-									name="Login"
-									active={activeItem === 'Login'}
-									onClick={this.handleItemClick}
-								/>
-								<Menu.Item
-									as={Link}
-									to="/signup"
-									name="Sign Up"
-									active={activeItem === 'Sign Up'}
-									onClick={this.handleItemClick}
-								/>
-							</Menu>
-						) : (
-							<Menu.Item
-								as={Link}
-								to="/"
-								name="Logout"
-								onClick={this.handleLogOut.bind(this)}
-							/>
-						)}
-					</Menu.Menu>
-				</Menu>
-			</div>
-		);
-	}
+          <Menu.Menu position="right">
+            {!isLoggedIn ? (
+              <Menu pointing attached size="massive">
+                <Menu.Item
+                  as={Link}
+                  to="/login"
+                  name="Login"
+                  active={activeItem === 'Login'}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  as={Link}
+                  to="/signup"
+                  name="Sign Up"
+                  active={activeItem === 'Sign Up'}
+                  onClick={this.handleItemClick}
+                />
+              </Menu>
+            ) : (
+              <Menu.Item
+                as={Link}
+                to="/"
+                name="Logout"
+                onClick={this.handleLogOut.bind(this)}
+              />
+            )}
+          </Menu.Menu>
+        </Menu>
+      </div>
+    );
+  }
 }
 
 const mapStateToProp = state => {
-	return {
-		isLoggedIn: !!state.user.id
-	};
+  return {
+    isLoggedIn: !!state.user.id,
+  };
 };
 
 const mapStateToDispatch = dispatch => {
-	return {
-		logout: () => dispatch(logout())
-	};
+  return {
+    logout: () => dispatch(logout()),
+  };
 };
 
 export default connect(mapStateToProp, mapStateToDispatch)(Navbar);
 
 Navbar.propTypes = {
-	handleClick: PropTypes.func.isRequired,
-	isLoggedIn: PropTypes.bool.isRequired
+  handleClick: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
