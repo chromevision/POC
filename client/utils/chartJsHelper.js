@@ -63,7 +63,7 @@ export const datafyLine = (arr, emotion) => {
 	for (let i = 0; i < arr.length; i++) {
 		for (let key in arr[i]) {
 			if (arr[i].hasOwnProperty(key)) {
-				if (key === emotion) {
+				if (key === emotion.toLowerCase()) {
 					data.push(arr[i][key]);
 				}
 				if (key === 'createdAt') {
