@@ -41,11 +41,9 @@ export const datafyRadar = arr => {
 };
 
 const avgOfEmotionValues = arr => {
-	console.log(arr);
 	let arrOfAvgs = [];
 	let sum = 0;
 
-	console.log(arr[arr.length - 1]);
 	for (let i = 0; i < 8; i++) {
 		for (let j = 0; j < arr.length - 1; j++) {
 			sum += arr[j][i] * 1;
@@ -53,7 +51,6 @@ const avgOfEmotionValues = arr => {
 		arrOfAvgs.push((sum / arr.length).toFixed(4));
 		sum = 0;
 	}
-	console.log('arrOfAvg', arrOfAvgs);
 	return arrOfAvgs;
 };
 

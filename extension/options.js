@@ -9,7 +9,7 @@ navigator.mediaDevices
 		video.play();
 	})
 	.catch(err => {
-		console.log('An error occurred! ' + err);
+		console.error('An error occurred! ' + err);
 	});
 
 const canvas = document.getElementById('canvas');
@@ -64,20 +64,20 @@ const takePicture = () => {
 };
 
 const userTokenId = () => {
-  // USE THIS TO RESET YOUR TOKEN
-  try {
-  	function deleteUserIdFromStorage(callback) {
-  		chrome.storage.sync.remove('userid', function() {
-  			callback();
-  		});
-  	}
-  } catch (error) {
-  	console.log(chrome.runtime.lastError);
-  }
-  async function deltedToken() {
-  	console.log('deleted');
-  }
-  deleteUserIdFromStorage(deltedToken);
+	// USE THIS TO RESET YOUR TOKEN
+	try {
+		function deleteUserIdFromStorage(callback) {
+			chrome.storage.sync.remove('userid', function() {
+				callback();
+			});
+		}
+	} catch (error) {
+		console.log(chrome.runtime.lastError);
+	}
+	async function deltedToken() {
+		console.log('deleted');
+	}
+	deleteUserIdFromStorage(deltedToken);
 
 	async function getUserIdFromStorage(callback) {
 		await chrome.storage.sync.get('userid', async items => {
