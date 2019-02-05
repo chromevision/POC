@@ -74,12 +74,11 @@ class Graph extends Component {
 			const emotions = await axios.get('/api/emotions');
 			this.setState({ emotions: emotions.data });
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}
 
 	render() {
-		console.log(this.state.emotions);
 		return (
 			<div className="sub-nav">
 				<div className="container">

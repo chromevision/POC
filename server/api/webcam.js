@@ -15,8 +15,7 @@ router.post('/', async (req, res, next) => {
 	try {
 		let emotionObj;
 		const { tokenid, taburl } = req.headers;
-		console.log(req.headers.tokenid);
-		console.log(req.headers.taburl);
+
 		const options = {
 			uri: uriBase,
 			qs: params,
@@ -29,7 +28,7 @@ router.post('/', async (req, res, next) => {
 		await request.post(options, async (error, response, body) => {
 			try {
 				if (error) {
-					console.log('Error: ', error);
+					console.error('Error: ', error);
 					return;
 				}
 				let jsonObj = JSON.parse(body);

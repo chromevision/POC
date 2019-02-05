@@ -47,7 +47,7 @@ class Navbar extends Component {
 
 					<Menu.Menu position="right">
 						{!isLoggedIn ? (
-							<Menu.Menu position="right">
+							<Menu pointing size="massive">
 								<Menu.Item
 									as={Link}
 									to="/login"
@@ -58,11 +58,11 @@ class Navbar extends Component {
 								<Menu.Item
 									as={Link}
 									to="/signup"
-									name="Signup"
-									active={activeItem === 'Signup'}
+									name="Sign Up"
+									active={activeItem === 'Sign Up'}
 									onClick={this.handleItemClick}
 								/>
-							</Menu.Menu>
+							</Menu>
 						) : (
 							<Menu.Item
 								as={Link}
