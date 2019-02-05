@@ -14,9 +14,9 @@ import {
 } from 'semantic-ui-react';
 
 class UserHome extends Component {
-  componentDidMount() {
-    this.props.getAllEmotions(this.props.User);
-  }
+	componentDidMount() {
+		this.props.getAllEmotions(this.props.User);
+	}
 
 	render() {
 		return (
@@ -50,16 +50,16 @@ class UserHome extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
-  };
+	return {
+		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+	};
 };
 
 const mapStateToProps = state => {
-  return {
-    User: state.user.id,
-    Emotions: state.emotions,
-  };
+	return {
+		User: state.user.id,
+		Emotions: state.emotions
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
