@@ -7,63 +7,62 @@ import {
 	Form,
 	Grid,
 	Header,
-	Image,
-	Message,
-	Segment
+	Segment,
+	Message
 } from 'semantic-ui-react';
 
-class AuthForm extends Component {
+class LoginSignUp extends Component {
+	constru;
 	render() {
-		const { name, displayName, handleSubmit, error } = props;
+		const { name, displayName, handleSubmit } = this.props;
+
 		return (
 			<div className="login-form">
 				<style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        height: 100%;
-      }
-    `}</style>
-				<Grid
-					textAlign="center"
-					style={{ height: '100%' }}
-					verticalAlign="middle">
-					<Grid.Column style={{ maxWidth: 450 }}>
-						<Header as="h2" color="teal" textAlign="center">
-							<Image src="/logo.png" /> Log-in to your account
-						</Header>
-						<Form size="large">
-							<Segment stacked>
+			  body > div,
+			  body > div > div,
+			  body > div > div > div.login-form {
+			    height: 100%;
+			  }
+			`}</style>
+				<Segment placeholder>
+					<Grid
+						columns={2}
+						fluid
+						relaxed="very"
+						stackable
+						textAlign="center"
+						style={{ height: '100%' }}
+						verticalAlign="middle">
+						<Form onSubmit={handleSubmit} name={name} widths="equal">
+							<Grid.Column>
 								<Form.Input
-									fluid
 									icon="user"
 									iconPosition="left"
-									placeholder="E-mail address"
+									placeholder="Email"
+									name="email"
 								/>
+							</Grid.Column>
+
+							<Grid.Column>
 								<Form.Input
-									fluid
 									icon="lock"
 									iconPosition="left"
 									placeholder="Password"
 									type="password"
+									name="password"
 								/>
-
-								<Button color="teal" fluid size="large">
-									Login
-								</Button>
-							</Segment>
+							</Grid.Column>
+							<Button color="blue" fluid size="large">
+								{displayName}
+							</Button>
 						</Form>
-						<Message>
-							New to us? <a href="#">Sign Up</a>
-						</Message>
-					</Grid.Column>
-				</Grid>
+					</Grid>
+				</Segment>
 			</div>
 		);
 	}
 }
-
-export default AuthForm;
 
 const mapLogin = state => {
 	return {
@@ -93,12 +92,11 @@ const mapDispatch = dispatch => {
 	};
 };
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+export const Login = connect(mapLogin, mapDispatch)(LoginSignUp);
+export const Signup = connect(mapSignup, mapDispatch)(LoginSignUp);
 
-AuthForm.propTypes = {
+LoginSignUp.propTypes = {
 	name: PropTypes.string.isRequired,
 	displayName: PropTypes.string.isRequired,
-	handleSubmit: PropTypes.func.isRequired,
-	error: PropTypes.object
+	handleSubmit: PropTypes.func.isRequired
 };

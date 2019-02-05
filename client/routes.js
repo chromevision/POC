@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, Signup, UserHome, Graph, MainPage } from './components';
+import { UserHome, Graph, MainPage } from './components';
+import { Login, Signup } from './components/loginsignup';
 import { me } from './store';
 
 class Routes extends Component {
