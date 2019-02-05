@@ -19,9 +19,11 @@ class UserHome extends Component {
 	state = {
 		modal: false
 	};
-	componentDidMount() {
-		this.props.getAllEmotions(this.props.User);
+	async componentDidMount() {
+		await this.props.getAllEmotions(this.props.User);
 		if (this.props.Emotions.length === 0) {
+			console.log(this.state.modal);
+			console.log(this.props.Emotions);
 			this.setState({ modal: true });
 		}
 	}
