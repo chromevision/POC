@@ -19,7 +19,6 @@ authForm.onsubmit = evt => {
 				for (let i = 0; i < randomPool.length; i++) {
 					hex += randomPool[i].toString(16);
 				}
-				console.log(hex, 'else');
 				await chrome.storage.sync.set({ userid: hex }, () => {
 					callback(hex);
 				});
@@ -31,7 +30,6 @@ authForm.onsubmit = evt => {
 
 	function useToken(userid) {
 		let token = userid;
-		console.log(token);
 		defineObjectAndMakeRequest(token);
 	}
 
@@ -41,8 +39,6 @@ authForm.onsubmit = evt => {
 		userObj.tokenId = token;
 
 		const updateURI = 'http://localhost:8080/auth/login';
-
-		console.log(userObj);
 
 		const response = await fetch(updateURI, {
 			method: 'PUT',
