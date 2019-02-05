@@ -42,7 +42,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
 	return {
 		loadInitialData() {
-			dispatch(auth());
+			dispatch(me());
 		}
 	};
 };
