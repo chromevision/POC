@@ -1,57 +1,65 @@
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Radar, Line } from 'react-chartjs-2';
-import { datafyRadar, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
+import UserEmotionsLine from './UserEmotionsLine';
+import UserEmotionsRadar from './UserEmotionsRadar';
+import {
+	Header,
+	Container,
+	Divider,
+	Statistic,
+	Rail,
+	Label,
+	Segment
+} from 'semantic-ui-react';
 
 class UserHome extends Component {
-  componentDidMount() {
-    this.props.getAllEmotions(this.props.User);
-  }
+	componentDidMount() {
+		this.props.getAllEmotions(this.props.User);
+	}
 
-  render() {
-    let emo = [];
-    let forLine = [];
-    console.log('asdfasdf', this.props.Emotions);
-    if (this.props.Emotions.length !== 0) {
-      // emo = datafyArr(this.props.Emotions);
-      forLine = datafyLine(this.props.Emotions, 'happiness');
-      // console.log(emo);
-      console.log(forLine);
-    }
+	render() {
+		return (
+			<Container>
+				<Container>
+					{/* <Header floated="right" as="h4">
+						Total Snapshots: {this.props.Emotions.length}
+					</Header> */}
+					<Header as="h2">Your Snapshot</Header>
 
-    return (
-      <div className="sub-nav container">
-        <h1> Number of Pictures Captured </h1>
-        <p>{this.props.Emotions.length}</p>
-        <h1> Your Web Snapshot: </h1>
-        <Radar data={datafyRadar(this.props.Emotions)} />
-        <h1> Happiness trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'happiness')} />
-        <h1> Sadness trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'sadness')} />
-        <h1> Anger trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'anger')} />
-        <h1> Contempt trends while on the Web: </h1>
-        <Line data={datafyLine(this.props.Emotions, 'contempt')} />
-      </div>
-    );
-  }
+					<Divider horizontal />
+					<Statistic floated="right">
+						<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
+						<Statistic.Label>Snapshots</Statistic.Label>
+					</Statistic>
+
+					<UserEmotionsRadar />
+					<Divider horizontal section>
+						<Header as="h3">Trends by individual emotions</Header>
+					</Divider>
+					<UserEmotionsLine />
+					<Divider horizontal section>
+						<Header as="h3">Creat Your Own Treand</Header>
+						<Header as="h6">Placeholder</Header>
+					</Divider>
+					<UserEmotionsLine searchable={true} />
+				</Container>
+			</Container>
+		);
+	}
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
-  };
+	return {
+		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+	};
 };
 
 const mapStateToProps = state => {
-  return {
-    User: state.user.id,
-    Emotions: state.emotions,
-  };
+	return {
+		User: state.user.id,
+		Emotions: state.emotions
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
