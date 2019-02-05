@@ -42,6 +42,14 @@ const getUser = user => ({ type: GET_USER, user });
 // 		}
 // 	};
 // };
+export const me = () => async dispatch => {
+	try {
+		const res = await axios.get('/auth/me');
+		dispatch(getUser(res.data || defaultUser));
+	} catch (err) {
+		console.error(err);
+	}
+};
 
 export const auth = (email, password, method) => async dispatch => {
 	let res;
