@@ -10,13 +10,25 @@ import {
 	Statistic,
 	Rail,
 	Label,
-	Segment
+	Segment,
+	Modal,
+	Button
 } from 'semantic-ui-react';
 
 class UserHome extends Component {
+	state = {
+		modal: false
+	};
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
+		if (this.props.Emotions.length === 0) {
+			this.setState({ modal: true });
+		}
 	}
+
+	handleClose = () => {
+		this.setState({ modal: false });
+	};
 
 	render() {
 		return (
@@ -32,6 +44,26 @@ class UserHome extends Component {
 						<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
 						<Statistic.Label>Snapshots</Statistic.Label>
 					</Statistic>
+					<Modal
+						open={this.state.modal}
+						basic
+						size="large"
+						closeOnDimmerClick={true}
+						closeOnEscape={true}
+						onClose={this.handleClose}
+						centered={false}
+						dimmer="blurring">
+						<Modal.Header>Zero Snapshots!</Modal.Header>
+						<Modal.Content>
+							You have no Snapshots! Start using the ChromeVision extension to
+							create your Snapshots!
+						</Modal.Content>
+						<Modal.Actions>
+							<Button inverted color="black" onClick={this.handleClose}>
+								Close
+							</Button>
+						</Modal.Actions>
+					</Modal>
 
 					<UserEmotionsRadar />
 					<Divider horizontal section>
