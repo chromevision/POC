@@ -12,7 +12,6 @@ import {
 } from 'semantic-ui-react';
 
 class LoginSignUp extends Component {
-	constru;
 	render() {
 		const { name, displayName, handleSubmit } = this.props;
 
@@ -42,7 +41,6 @@ class LoginSignUp extends Component {
 									name="email"
 								/>
 							</Grid.Column>
-
 							<Grid.Column>
 								<Form.Input
 									icon="lock"
