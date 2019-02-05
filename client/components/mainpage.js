@@ -10,39 +10,25 @@ const MainPage = () => {
 					<strong>ChromeVision</strong> is a computer vision application that
 					uses your built-in webcam to monitor and perform sentiment analysis on
 					your facial expressions as you browse the web. This data is aggregated
-					and displayed through easily-readable visualizations that allow you to better
-					understand your personal browsing habits.
+					and visualized through easily-readable graphs that allow you to better
+					understanding your personal browsing habits.
 				</p>
-				<br />
-				<h2>New Users</h2>
 				<p>
-					You must first{' '}
+					If you are a new user, you must first{' '}
 					<Link to="/signup">
 						create a <strong>ChromeVision</strong> account
 					</Link>{' '}
 					and install and log in with our companion Chrome extension.
 				</p>
-
-				<br />
-				<h2>Existing Users</h2>
 				<p>
-					Please{' '}
-					<Link to="/login">
-						sign in{' '}
-					</Link>
-					to your existing account to view your data.
+					If you have an existing <strong>ChromeVision</strong> account, please{' '}
+					<Link to="/login">sign in</Link> to view your data.
 				</p>
-
-				<br />
-				<h2>Our Commitment to You</h2>
 				<p>
-					At <strong>ChromeVision</strong>, we value the importance of maintaining
-					your privacy and safety when using our application. To this end, we keep
-					no record of any image or video data that is collected from your webcam.
-					We also claim no ownership of your personal emotional data.
+					We at <strong>ChromeVision</strong> claim no ownership of your
+					personal emotional data, and keep no record of any image or video data
+					that is collected from your webcam.
 				</p>
-
-				<br />
 			</div>
 		</div>
 	);
