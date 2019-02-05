@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    if(!req.user|| !req.user.admin){
+    if(!req.user || !req.user.admin){
       res.send("You're not authorized!");
     }
     else{
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/:id/emotions', async (req, res, next) => {
   try {
-    if(!req.user){
+    if(!req.user || (req.params.id !== req.user.id)){
       res.send("You're not authorized!");
     }
     else{
