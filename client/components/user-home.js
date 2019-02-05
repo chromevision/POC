@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { getAllEmotionsThunk } from '../store/emotions';
 import UserEmotionsLine from './UserEmotionsLine';
 import UserEmotionsRadar from './UserEmotionsRadar';
-import {urlFinder} from '../utils/baseUrlHelper';
+import { urlFinder } from '../utils/baseUrlHelper';
 
 import {
 	Header,
@@ -12,19 +12,34 @@ import {
 	Statistic,
 	Rail,
 	Label,
-	Segment
+  Segment,
+  Input,
+  Button,
+  Icon
 } from 'semantic-ui-react';
 
 class UserHome extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      search: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
 	}
 
+  handleChange(e){
+    this.setState({search: e.target.value});
+  }
+  handleSubmit() {
+    const arr = urlFinder(this.props.Emotions,this.state.search);
+    console.log(arr);
+  }
 	render() {
-    // console.log(this.props.Emotions, 'google');
-    // if(this.props.Emotions.length !== 0){
-    const arr = (urlFinder(this.props.Emotions, 'linked'));
-    // }
+
 		return (
 			<Container>
 				<Container>
@@ -48,6 +63,15 @@ class UserHome extends Component {
 						<Header as="h3">Creat Your Own Treand</Header>
 						<Header as="h6">Placeholder</Header>
 					</Divider>
+          <div>
+            <Input onChange={this.handleChange} placeholder='Domain'/>
+            <Button onClick={this.handleSubmit} animated='vertical'>
+              <Button.Content hidden>View</Button.Content>
+              <Button.Content visible>
+              <Icon name='world' />
+              </Button.Content>
+            </Button>
+          </div>
 					<UserEmotionsLine searchable={true} />
 				</Container>
 			</Container>
