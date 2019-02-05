@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { getAllEmotionsThunk } from '../store/emotions';
 import UserEmotionsLine from './UserEmotionsLine';
 import UserEmotionsRadar from './UserEmotionsRadar';
+import {urlFinder} from '../utils/baseUrlHelper';
+
 import {
 	Header,
 	Container,
@@ -19,6 +21,10 @@ class UserHome extends Component {
 	}
 
 	render() {
+    // console.log(this.props.Emotions, 'google');
+    // if(this.props.Emotions.length !== 0){
+    const arr = (urlFinder(this.props.Emotions, 'linked'));
+    // }
 		return (
 			<Container>
 				<Container>
