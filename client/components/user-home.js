@@ -1,11 +1,17 @@
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Radar, Line } from 'react-chartjs-2';
-import { datafyArr, datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
 import UserEmotionsLine from './UserEmotionsLine';
+import UserEmotionsRadar from './UserEmotionsRadar';
+import {
+	Header,
+	Container,
+	Divider,
+	Statistic,
+	Rail,
+	Label,
+	Segment
+} from 'semantic-ui-react';
 
 class UserHome extends Component {
 	componentDidMount() {
@@ -13,41 +19,32 @@ class UserHome extends Component {
 	}
 
 	render() {
-		const dataRadar = {
-			labels: [
-				'anger',
-				'contempt',
-				'disgust',
-				'fear',
-				'happiness',
-				'neutral',
-				'sadness',
-				'surprise'
-			],
-			datasets: [
-				{
-					label: 'Snapshot:',
-					backgroundColor: 'rgba(255,99,132,0.2)',
-					borderColor: 'rgba(255,99,132,1)',
-					pointBackgroundColor: 'rgba(255,99,132,1)',
-					pointBorderColor: '#fff',
-					pointHoverBackgroundColor: '#fff',
-					pointHoverBorderColor: 'rgba(255,99,132,1)',
-					data: [20, 22, 29, 8, 70, 30, 33, 60]
-				}
-			]
-		};
-
 		return (
-			<div className="sub-nav container">
-				<h1> Your Web Snapshot: </h1>
-				<div>
-					<Radar data={dataRadar} />
-				</div>
-				<div>
+			<Container>
+				<Container>
+					{/* <Header floated="right" as="h4">
+						Total Snapshots: {this.props.Emotions.length}
+					</Header> */}
+					<Header as="h2">Your Snapshot</Header>
+
+					<Divider horizontal />
+					<Statistic floated="right">
+						<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
+						<Statistic.Label>Snapshots</Statistic.Label>
+					</Statistic>
+
+					<UserEmotionsRadar />
+					<Divider horizontal section>
+						<Header as="h3">Trends by individual emotions</Header>
+					</Divider>
 					<UserEmotionsLine />
-				</div>
-			</div>
+					<Divider horizontal section>
+						<Header as="h3">Creat Your Own Treand</Header>
+						<Header as="h6">Placeholder</Header>
+					</Divider>
+					<UserEmotionsLine searchable={true} />
+				</Container>
+			</Container>
 		);
 	}
 }

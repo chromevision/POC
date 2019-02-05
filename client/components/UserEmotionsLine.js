@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
-import { Menu, Segment, Header } from 'semantic-ui-react';
+import { Menu, Segment, Header, Text, Search } from 'semantic-ui-react';
 
 class UserHomeLine extends Component {
 	state = {
@@ -19,8 +19,8 @@ class UserHomeLine extends Component {
 
 		return (
 			<div className="sub-nav container">
-				<Header as="h1">Emotions</Header>
-				<Menu pointing>
+				{this.props.searchable ? <Search /> : null}
+				<Menu pointing fluid widths={7} secondary>
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
@@ -66,7 +66,10 @@ class UserHomeLine extends Component {
 				</Menu>
 				<Segment raised stacked padded="very">
 					{activeItem === 'happiness' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Happiness')} />
+						<Line
+							easing="easeInOutBounce"
+							data={datafyLine(this.props.Emotions, 'Happiness')}
+						/>
 					) : null}
 					{activeItem === 'sadness' ? (
 						<Line data={datafyLine(this.props.Emotions, 'Sadness')} />
