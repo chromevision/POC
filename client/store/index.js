@@ -7,7 +7,7 @@ import emotions from './emotions';
 
 const reducer = combineReducers({ user, emotions });
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
 const store = createStore(reducer, middleware);
 
