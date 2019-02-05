@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { getAllEmotionsThunk } from '../store/emotions';
+import {setAllEmotionsOfDomain} from '../store/currentDomainEmotions';
 import UserEmotionsLine from './UserEmotionsLine';
 import UserEmotionsRadar from './UserEmotionsRadar';
 import { urlFinder } from '../utils/baseUrlHelper';
@@ -10,9 +11,6 @@ import {
 	Container,
 	Divider,
 	Statistic,
-	Rail,
-	Label,
-  Segment,
   Input,
   Button,
   Icon
@@ -36,7 +34,7 @@ class UserHome extends Component {
   }
   handleSubmit() {
     const arr = urlFinder(this.props.Emotions,this.state.search);
-    console.log(arr);
+    this.props.setAllEmotionsOfDomain(arr);
   }
 	render() {
 
@@ -72,7 +70,7 @@ class UserHome extends Component {
               </Button.Content>
             </Button>
           </div>
-					<UserEmotionsLine searchable={true} />
+					<UserEmotionsLine forCurr = {true}/>
 				</Container>
 			</Container>
 		);
@@ -81,14 +79,15 @@ class UserHome extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
+    setAllEmotionsOfDomain: (emotions) => dispatch(setAllEmotionsOfDomain(emotions))
 	};
 };
 
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
-		Emotions: state.emotions
+    Emotions: state.emotions,
 	};
 };
 
