@@ -7,26 +7,26 @@ const app = require('../index');
 const User = db.model('user');
 
 describe('User routes', () => {
-  beforeEach(() => {
-    return db.sync({ force: true });
-  });
+	beforeEach(() => {
+		return db.sync({ force: true });
+	});
 
-  describe('/api/users/', () => {
-    const codysEmail = 'cody@puppybook.com';
+	describe('/api/users/', () => {
+		const codysEmail = 'cody@puppybook.com';
 
-    beforeEach(() => {
-      return User.create({
-        email: codysEmail,
-      });
-    });
+		beforeEach(() => {
+			return User.create({
+				email: codysEmail
+			});
+		});
 
-    it('GET /api/users', async () => {
-      const res = await request(app)
-        .get('/api/users')
-        .expect(200);
+		it('GET /api/users', async () => {
+			const res = await request(app)
+				.get('/api/users')
+				.expect(200);
 
-      expect(res.body).to.be.an('array');
-      expect(res.body[0].email).to.be.equal(codysEmail);
-    });
-  }); // end describe('/api/users')
+			expect(res.body).to.be.an('array');
+			expect(res.body[0].email).to.be.equal(codysEmail);
+		});
+	}); // end describe('/api/users')
 }); // end describe('User routes')

@@ -424,5 +424,4 @@ let data = [
 	}
 ];
 
-
 let answer = data.map;

@@ -6,12 +6,11 @@ import history from './history';
 import store from './store';
 import App from './app';
 
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById('app')
+	<Provider store={store}>
+		<Router history={history}>
+			<App />
+		</Router>
+	</Provider>,
+	document.getElementById('app')
 );
