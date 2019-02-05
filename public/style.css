@@ -53,7 +53,7 @@ nav a:hover {
 }
 
 .enlarged-font {
-  font-size: 175%;
+  font-size: 140%;
 }
 
 .fixed {
@@ -62,11 +62,11 @@ nav a:hover {
 }
 
 .main-container {
-  margin-top: 7vh;
+  margin-top: 5vh;
 }
 
 .sub-nav {
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
 
 .wrap-container {
