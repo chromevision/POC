@@ -28,7 +28,6 @@ class LoginSignUp extends Component {
 				<Segment placeholder>
 					<Grid
 						columns={2}
-						fluid
 						relaxed="very"
 						stackable
 						textAlign="center"

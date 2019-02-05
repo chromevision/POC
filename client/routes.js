@@ -4,7 +4,7 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { UserHome, Graph, MainPage } from './components';
 import { Login, Signup } from './components/loginsignup';
-import { me } from './store';
+import { me, auth } from './store';
 
 class Routes extends Component {
 	componentDidMount() {
@@ -42,7 +42,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
 	return {
 		loadInitialData() {
-			dispatch(me());
+			dispatch(auth());
 		}
 	};
 };
