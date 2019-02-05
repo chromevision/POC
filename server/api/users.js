@@ -31,10 +31,10 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/:id/emotions', async (req, res, next) => {
   try {
-    // if(!req.user || (req.params.id !== req.user.id)){
-    //   res.send("You're not authorized!");
-    // }
-    // else{
+    if(!req.user || (Number(req.params.id) !== req.user.id)){
+      res.send("You're not authorized!");
+    }
+    else{
       const userEmotions = await Emotion.findAll({
         where: {
           userId: req.params.id,
@@ -42,7 +42,7 @@ router.get('/:id/emotions', async (req, res, next) => {
         include: [{ all: true }],
       });
       res.send(userEmotions);
-    // }
+    }
   } catch (error) {
     next(error);
   }
