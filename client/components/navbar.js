@@ -47,13 +47,22 @@ class Navbar extends Component {
 
 					<Menu.Menu position="right">
 						{!isLoggedIn ? (
-							<Menu.Item
-								as={Link}
-								to="/login"
-								name="Login"
-								active={activeItem === 'Login'}
-								onClick={this.handleItemClick}
-							/>
+							<Menu.Menu position="right">
+								<Menu.Item
+									as={Link}
+									to="/login"
+									name="Login"
+									active={activeItem === 'Login'}
+									onClick={this.handleItemClick}
+								/>
+								<Menu.Item
+									as={Link}
+									to="/signup"
+									name="Signup"
+									active={activeItem === 'Signup'}
+									onClick={this.handleItemClick}
+								/>
+							</Menu.Menu>
 						) : (
 							<Menu.Item
 								as={Link}
