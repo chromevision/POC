@@ -8,8 +8,12 @@ import { Menu } from 'semantic-ui-react';
 class Navbar extends Component {
 	state = { activeItem: 'home' };
 
-	handleItemClick = (evt, { name }) => this.setState({ activeItem: name });
-
+	handleItemClick = (evt, { name }) => {
+		if (name === 'ChromeVision') {
+			name = 'home';
+		}
+		this.setState({ activeItem: name });
+	};
 	handleLogOut() {
 		this.props.logout();
 	}
@@ -23,23 +27,22 @@ class Navbar extends Component {
 					<Menu.Item
 						header
 						as={Link}
-						to="/"
+						to="/home"
 						name="ChromeVision"
 						icon="eye"
-						color="pink"
 						onClick={this.handleItemClick}
 					/>
 
 					<Menu.Item
 						as={Link}
-						to="/"
+						to="/home"
 						name="home"
 						active={activeItem === 'home'}
 						onClick={this.handleItemClick}
 					/>
 					<Menu.Item
 						as={Link}
-						to="/home"
+						to="/charts"
 						name="charts"
 						active={activeItem === 'charts'}
 						onClick={this.handleItemClick}
@@ -47,26 +50,26 @@ class Navbar extends Component {
 
 					<Menu.Menu position="right">
 						{!isLoggedIn ? (
-							<Menu pointing size="massive">
-                <Menu.Item
-                  as={Link}
-                  to="/login"
-                  name="Login"
-                  active={activeItem === 'Login'}
-                  onClick={this.handleItemClick}
-							  />
-                <Menu.Item
-                  as={Link}
-                  to="/signup"
-                  name="Sign Up"
-                  active={activeItem === 'Sign Up'}
-                  onClick={this.handleItemClick}
-                />
-              </Menu>
+							<Menu.Menu position="right">
+								<Menu.Item
+									as={Link}
+									to="/login"
+									name="Login"
+									active={activeItem === 'Login'}
+									onClick={this.handleItemClick}
+								/>
+								<Menu.Item
+									as={Link}
+									to="/signup"
+									name="Sign Up"
+									active={activeItem === 'Sign Up'}
+									onClick={this.handleItemClick}
+								/>
+							</Menu.Menu>
 						) : (
 							<Menu.Item
 								as={Link}
-								to="/"
+								to="/home"
 								name="Logout"
 								onClick={this.handleLogOut.bind(this)}
 							/>
