@@ -60,6 +60,7 @@ form p,
 	background-color: #999;
 	border-bottom: 2px groove grey;
 	display: flex;
+	/* position: relative; */
 	height: 10vh;
 	justify-content: center;
 	padding: 0 2vw;
