@@ -95,10 +95,6 @@ async function seed() {
 			userId: 4
 		})
 	]);
-
-	console.log(`seeded ${users.length} users`);
-	console.log(`seeded ${emotions.length} users`);
-	console.log('seed complete');
 }
 
 async function runSeed() {
