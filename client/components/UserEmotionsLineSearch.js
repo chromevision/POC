@@ -33,7 +33,7 @@ class UserHomeLineSearch extends Component {
 		return (
 			<Container>
 				<Divider horizontal section>
-					<Header>Search a Site To View Your Sitewide Trends!</Header>
+					Search a Site To View Your Sitewide Trends!
 				</Divider>
 				<Input
 					placeholder="Domain"
