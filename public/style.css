@@ -62,7 +62,10 @@ nav a:hover {
 }
 
 .main-container {
-	margin-top: 5vh;
+	border-radius: 30px;
+	box-shadow: 0px 0px 10px #000;
+	margin-top: 7vh;
+	padding: 5vh 5vw;
 }
 
 .sub-nav {
