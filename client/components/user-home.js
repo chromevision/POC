@@ -14,7 +14,9 @@ import {
 	Container,
 	Statistic,
 	Segment,
-	Divider
+	Divider,
+	Modal,
+	Button
 } from 'semantic-ui-react';
 
 class UserHome extends Component {
@@ -83,6 +85,26 @@ class UserHome extends Component {
 				<Segment raised>
 					<UserEmotionsLineSearch />
 				</Segment>
+				<Modal
+					open={this.state.modal}
+					basic
+					size="large"
+					closeOnDimmerClick={true}
+					closeOnEscape={true}
+					onClose={this.handleClose}
+					centered={false}
+					dimmer="blurring">
+					<Modal.Header>Zero Snapshots!</Modal.Header>
+					<Modal.Content>
+						You have no Snapshots! Start using the ChromeVision extension to
+						create your Snapshots!
+					</Modal.Content>
+					<Modal.Actions>
+						<Button inverted color="black" onClick={this.handleClose}>
+							Close
+						</Button>
+					</Modal.Actions>
+				</Modal>
 			</Container>
 		);
 	}
