@@ -56,13 +56,13 @@ class UserHomeLine extends Component {
 						name="happiness"
 						active={activeItem === 'happiness'}
 						onClick={this.handleItemClick}
-						color="green"
+						color="yellow"
 					/>
 					<Menu.Item
 						name="neutral"
 						active={activeItem === 'neutral'}
 						onClick={this.handleItemClick}
-						color="green"
+						color="teal"
 					/>
 					<Menu.Item
 						name="surprise"
@@ -74,7 +74,7 @@ class UserHomeLine extends Component {
 						name="sadness"
 						active={activeItem === 'sadness'}
 						onClick={this.handleItemClick}
-						color="teal"
+						color="violet"
 					/>
 				</Menu>
 
