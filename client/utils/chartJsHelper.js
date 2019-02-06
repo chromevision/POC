@@ -1,3 +1,17 @@
+const avgOfEmotionValues = arr => {
+  let arrOfAvgs = [];
+  let sum = 0;
+
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      sum += arr[j][i] * 1;
+    }
+    arrOfAvgs.push((sum / arr.length).toFixed(4));
+    sum = 0;
+  }
+  return arrOfAvgs;
+};
+
 export const datafyRadar = arr => {
 	let values = [];
 	arr.map(n => {
@@ -40,19 +54,6 @@ export const datafyRadar = arr => {
 	};
 };
 
-const avgOfEmotionValues = arr => {
-	let arrOfAvgs = [];
-	let sum = 0;
-
-	for (let i = 0; i < 8; i++) {
-		for (let j = 0; j < arr.length - 1; j++) {
-			sum += arr[j][i] * 1;
-		}
-		arrOfAvgs.push((sum / arr.length).toFixed(4));
-		sum = 0;
-	}
-	return arrOfAvgs;
-};
 
 export const datafyLine = (arr, emotion) => {
 	let data = [];

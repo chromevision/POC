@@ -61,6 +61,10 @@ nav a:hover {
 	z-index: 100;
 }
 
+.login-form {
+	padding-top: 20vh;
+}
+
 .main-container {
 	background-color: #fafafa;
 	border-radius: 30px;
@@ -136,4 +140,9 @@ nav a:hover {
 	font-size: 2.5em;
 	font-weight: 800;
 	text-shadow: 1px 1px 3px white;
+}
+
+#wrong-username-pw {
+	font-size: 1.5em;
+	text-align: center;
 }
