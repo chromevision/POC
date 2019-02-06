@@ -11,7 +11,7 @@ const User = db.define('user', {
 	password: {
 		// protect later
 		type: Sequelize.STRING,
-		allowNull: false,
+		// allowNull: false,
 		get() {
 			return () => this.getDataValue('password');
 		}
