@@ -38,25 +38,25 @@ class UserHomeLine extends Component {
 						name="contempt"
 						active={activeItem === 'contempt'}
 						onClick={this.handleItemClick}
-						color="olive"
+						color="yellow"
 					/>
 					<Menu.Item
 						name="disgust"
 						active={activeItem === 'disgust'}
 						onClick={this.handleItemClick}
-						color="orange"
+						color="grey"
 					/>
 					<Menu.Item
 						name="fear"
 						active={activeItem === 'fear'}
 						onClick={this.handleItemClick}
-						color="purple"
+						color="orange"
 					/>
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
 						onClick={this.handleItemClick}
-						color="yellow"
+						color="pink"
 					/>
 					<Menu.Item
 						name="neutral"
@@ -65,46 +65,43 @@ class UserHomeLine extends Component {
 						color="teal"
 					/>
 					<Menu.Item
-						name="surprise"
-						active={activeItem === 'surprise'}
-						onClick={this.handleItemClick}
-						color="yellow"
-					/>
-					<Menu.Item
 						name="sadness"
 						active={activeItem === 'sadness'}
 						onClick={this.handleItemClick}
-						color="violet"
+						color="blue"
+					/>
+					<Menu.Item
+						name="surprise"
+						active={activeItem === 'surprise'}
+						onClick={this.handleItemClick}
+						color="purple"
 					/>
 				</Menu>
 
 				<Segment>
 					{activeItem === 'anger' ? (
-						<Line data={datafyLine(toShow, 'Anger')} />
+						<Line data={datafyLine(toShow, 'Anger', '#F14D45')} />
 					) : null}
 					{activeItem === 'contempt' ? (
-						<Line data={datafyLine(toShow, 'Contempt')} />
+						<Line data={datafyLine(toShow, 'Contempt', '#F0C445')} />
 					) : null}
 					{activeItem === 'disgust' ? (
-						<Line data={datafyLine(toShow, 'Disgust')} />
+						<Line data={datafyLine(toShow, 'Disgust', '#D7D9DD')} />
 					) : null}
 					{activeItem === 'fear' ? (
-						<Line data={datafyLine(toShow, 'Fear')} />
+						<Line data={datafyLine(toShow, 'Fear', '#F9A755')} />
 					) : null}
 					{activeItem === 'happiness' ? (
-						<Line
-							easing="easeInOutBounce"
-							data={datafyLine(toShow, 'Happiness')}
-						/>
+						<Line data={datafyLine(toShow, 'Happiness', '#FF6384')} />
 					) : null}
 					{activeItem === 'neutral' ? (
-						<Line data={datafyLine(toShow, 'Neutral')} />
+						<Line data={datafyLine(toShow, 'Neutral', '#4BC0C0')} />
 					) : null}
 					{activeItem === 'sadness' ? (
-						<Line data={datafyLine(toShow, 'Sadness')} />
+						<Line data={datafyLine(toShow, 'Sadness', '#61A2DA')} />
 					) : null}
 					{activeItem === 'surprise' ? (
-						<Line data={datafyLine(toShow, 'Surprise')} />
+						<Line data={datafyLine(toShow, 'Surprise', '#916ED6')} />
 					) : null}
 				</Segment>
 			</Container>
