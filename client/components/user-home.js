@@ -22,28 +22,31 @@ class UserHome extends Component {
 		return (
 			<Container>
 				<Container>
-					{/* <Header floated="right" as="h4">
-						Total Snapshots: {this.props.Emotions.length}
-					</Header> */}
-					<Header as="h2">Your Snapshot</Header>
-
-					<Divider horizontal />
-					<Statistic floated="right">
-						<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
-						<Statistic.Label>Snapshots</Statistic.Label>
-					</Statistic>
-
-					<UserEmotionsRadar />
-					<Divider horizontal section>
-						<Header as="h3">Trends by individual emotions</Header>
-					</Divider>
-					<UserEmotionsLine />
-					<Divider horizontal section>
-						<Header as="h3">Creat Your Own Treand</Header>
-						<Header as="h6">Placeholder</Header>
-					</Divider>
-					<UserEmotionsLine searchable={true} />
+					<Header as="h1">Your Snapshot</Header>
+					<Header floated="right" as="h4">
+						<Statistic floated="right">
+							<Statistic.Label>Snapshots</Statistic.Label>
+							<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
+						</Statistic>
+					</Header>
 				</Container>
+
+				<Divider horizontal />
+
+				<Segment>
+					<UserEmotionsRadar />
+				</Segment>
+				<Divider horizontal section>
+					<Header as="h3">Trends by individual emotions</Header>
+				</Divider>
+				<Segment raised>
+					<UserEmotionsLine />
+				</Segment>
+				<Divider horizontal section>
+					<Header as="h3">Creat Your Own Treand</Header>
+					<Header as="h6">Placeholder</Header>
+				</Divider>
+				<UserEmotionsLine searchable={true} />
 			</Container>
 		);
 	}

@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Radar, Polar } from 'react-chartjs-2';
+import { Radar, Polar, Doughnut, Pie, Bar } from 'react-chartjs-2';
 import { getAllEmotionsThunk } from '../store/emotions';
 import { Container, Divider } from 'semantic-ui-react';
-import { datafyRadar } from '../utils/chartJsHelper';
+import { datafyRadar, datafyBar } from '../utils/chartJsHelper';
 
 class UserEmotionsRadar extends Component {
 	componentDidMount() {
@@ -14,26 +14,24 @@ class UserEmotionsRadar extends Component {
 		return (
 			<Container>
 				<Divider horizontal section>
-					Radar Chart
+					Emotional Sentiment Averages
 				</Divider>
-				<Radar
-					data={datafyRadar(this.props.Emotions)}
-					responsive
-					responsiveAnimationDuration={5}
-					maintainAspectRatio
-					duration={3000}
-					easing="easeInOutBounce"
-				/>
-				<Divider horizontal section>
-					Polar Chart
-				</Divider>
-				<Polar
+				<Doughnut
 					responsive
 					responsiveAnimationDuration={5}
 					maintainAspectRatio
 					duration={9000}
 					easing="easeInOutBounce"
 					data={datafyRadar(this.props.Emotions)}
+				/>
+				<Divider>This is the peak of each emotion</Divider>
+				<Bar
+					responsive
+					responsiveAnimationDuration={5}
+					maintainAspectRatio
+					duration={9000}
+					easing="easeInOutBounce"
+					data={datafyBar(this.props.Emotions)}
 				/>
 			</Container>
 		);

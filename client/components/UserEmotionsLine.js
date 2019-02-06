@@ -20,30 +20,31 @@ class UserHomeLine extends Component {
 		return (
 			<div className="sub-nav container">
 				{this.props.searchable ? <Search /> : null}
-				<Menu pointing fluid widths={7} secondary>
+
+				<Menu fluid widths={7} tabular attached="top">
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="green"
 					/>
 					<Menu.Item
 						name="disgust"
 						active={activeItem === 'disgust'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="orange"
 					/>
 					<Menu.Item
 						name="fear"
 						active={activeItem === 'fear'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="purple"
 					/>
 					<Menu.Item
 						name="surprise"
 						active={activeItem === 'surprise'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="yellow"
 					/>
 					<Menu.Item
 						name="sadness"
@@ -64,7 +65,8 @@ class UserHomeLine extends Component {
 						color="olive"
 					/>
 				</Menu>
-				<Segment raised stacked padded="very">
+
+				<Segment>
 					{activeItem === 'happiness' ? (
 						<Line
 							easing="easeInOutBounce"
