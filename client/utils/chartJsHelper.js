@@ -33,15 +33,14 @@ export const datafyRadar = arr => {
 			{
 				label: 'Snapshot:',
 				backgroundColor: [
-					'#4BC0C0',
+					'#FF0000',
 					'#FFCE56',
-					'#E7E9ED',
+					'#A0522D',
 					'#36A2EB',
-					'#FF6384',
+					'#FFFF24',
 					'#4BC0C0',
-					'#FFCE56',
-					'#E7E9ED',
-					'#36A2EB'
+					'#1931E6',
+					'#FFA500',
 				],
 				borderColor: 'rgba(	127,255,212,.25)',
 				pointBackgroundColor: 'rgba(255,99,132,1)',
@@ -118,15 +117,14 @@ export const datafyBar = arr => {
 			{
 				label: 'Snapshot:',
 				backgroundColor: [
-					'#4BC0C0',
+					'#FF0000',
 					'#FFCE56',
-					'#E7E9ED',
+					'#A0522D',
 					'#36A2EB',
-					'#FF6384',
+					'#FFFF24',
 					'#4BC0C0',
-					'#FFCE56',
-					'#E7E9ED',
-					'#36A2EB'
+					'#1931E6',
+					'#FFA500',
 				],
 				borderColor: 'rgba(	127,255,212,.25)',
 				pointBackgroundColor: 'rgba(255,99,132,1)',
