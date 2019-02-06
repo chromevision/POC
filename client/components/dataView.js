@@ -8,8 +8,6 @@ class Dataview extends Component {
     this.props.getAllEmotions(this.props.User);
   }
   render() {
-    console.log(this.props.Emotions);
-    console.log(this.props.User);
     return (
       <Table celled>
         <Table.Header>
