@@ -23,7 +23,7 @@ class Navbar extends Component {
 		const { isLoggedIn } = this.props;
 		return (
 			<div>
-				<Menu pointing size="massive">
+				<Menu pointing size="massive" stackable>
 					<Menu.Item
 						header
 						as={Link}
