@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Radar, Polar, Doughnut, Pie, Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { getAllEmotionsThunk } from '../store/emotions';
 import { Container, Divider } from 'semantic-ui-react';
-import { datafyRadar, datafyBar } from '../utils/chartJsHelper';
+import { datafyBar } from '../utils/chartJsHelper';
 
 class UserEmotionsBarPeak extends Component {
 	componentDidMount() {

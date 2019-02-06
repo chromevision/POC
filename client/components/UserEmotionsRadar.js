@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { getAllEmotionsThunk } from '../store/emotions';
 import { Container, Divider } from 'semantic-ui-react';
-import { datafyRadar, datafyBar } from '../utils/chartJsHelper';
+import { datafyRadar } from '../utils/chartJsHelper';
 
 class UserEmotionsRadar extends Component {
 	componentDidMount() {
