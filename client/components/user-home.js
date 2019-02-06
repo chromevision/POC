@@ -35,6 +35,24 @@ class UserHome extends Component {
 		return (
 			<Container>
 				<Container>
+					<div
+						style={{
+							alignItems: 'flex-end',
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'space-between',
+							marginTop: '1vh'
+						}}>
+						<Header as="h1">Snapshot for {this.props.Email}</Header>
+						<Header as="h4">
+							<Statistic>
+								<Statistic.Label>Total Snapshots</Statistic.Label>
+								<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
+							</Statistic>
+						</Header>
+					</div>
+				</Container>
+				<Container>
 					<Header as="h1">Your Snapshot</Header>
 					<Header floated="right" as="h4">
 						<Statistic floated="right">
