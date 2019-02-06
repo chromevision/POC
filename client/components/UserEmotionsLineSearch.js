@@ -1,17 +1,14 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Line } from 'react-chartjs-2';
+import { datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
 import { setAllEmotionsOfDomain } from '../store/currentDomainEmotions';
-import UserEmotionsRadar from './UserEmotionsRadar';
-import UserEmotionsBarPeak from './UserEmotionsBarPeak';
-import UserEmotionsLine from './UserEmotionsLine';
-import UserEmotionsLineSearch from './UserEmotionsLineSearch';
-
+import { Container, Divider, Header, Input, Label } from 'semantic-ui-react';
 import { urlFinder } from '../utils/baseUrlHelper';
+import UserEmotionsLine from './UserEmotionsLine';
 
-import { Header, Container, Statistic, Segment } from 'semantic-ui-react';
-
-class UserHome extends Component {
+class UserHomeLineSearch extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -31,30 +28,32 @@ class UserHome extends Component {
 		const arr = urlFinder(this.props.Emotions, this.state.search);
 		this.props.setAllEmotionsOfDomain(arr);
 	}
+
 	render() {
 		return (
 			<Container>
-				<Container>
-					<Header as="h1">Your Snapshot</Header>
-					<Header floated="right" as="h4">
-						<Statistic floated="right">
-							<Statistic.Label>Snapshots</Statistic.Label>
-							<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
-						</Statistic>
-					</Header>
-				</Container>
-				<Segment raised>
-					<UserEmotionsRadar />
-				</Segment>
-				<Segment raised>
-					<UserEmotionsBarPeak />
-				</Segment>
-				<Segment raised>
-					<UserEmotionsLine />
-				</Segment>
-				<Segment raised>
-					<UserEmotionsLineSearch />
-				</Segment>
+				<Divider horizontal section>
+					<Header>Search a Site To View Your Sitewide Trends!</Header>
+				</Divider>
+				<Input
+					placeholder="Domain"
+					icon="world"
+					iconPosition="left"
+					size="mini"
+					onChange={this.handleChange}
+					action={{
+						icon: 'search',
+						onClick: () => this.handleSubmit()
+					}}
+				/>
+				{this.state.search === '' ? (
+					<Label size="small" pointing="left">
+						Please enter a value
+					</Label>
+				) : null}
+
+				<Divider hidden />
+				<UserEmotionsLine searching={true} forCurr={true} />
 			</Container>
 		);
 	}
@@ -71,9 +70,9 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
-		Email: state.user.email,
-		Emotions: state.emotions
+		Emotions: state.emotions,
+		currentDomainEmotions: state.currentDomainEmotions
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
+export default connect(mapStateToProps, mapDispatchToProps)(UserHomeLineSearch);
