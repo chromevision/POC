@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
-import { Menu, Segment } from 'semantic-ui-react';
+import { Menu, Segment, Container, Divider, Header } from 'semantic-ui-react';
 
 class UserHomeLine extends Component {
 	state = {
@@ -21,7 +21,12 @@ class UserHomeLine extends Component {
 			toShow = this.props.currentDomainEmotions;
 		}
 		return (
-			<div className="sub-nav container">
+			<Container>
+				{this.props.searching ? null : (
+					<Divider horizontal section>
+						<Header>Trends by individual emotions</Header>
+					</Divider>
+				)}
 				<Menu fluid widths={7} tabular attached="top" stackable>
 					<Menu.Item
 						name="happiness"
@@ -93,7 +98,7 @@ class UserHomeLine extends Component {
 						<Line data={datafyLine(toShow, 'Fear')} />
 					) : null}
 				</Segment>
-			</div>
+			</Container>
 		);
 	}
 }
