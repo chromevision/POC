@@ -14,8 +14,6 @@ const MainPage = () => {
           better understand your personal browsing habits.
         </p>
 
-        {/* <br /> */}
-        {/* <h2>New Users</h2> */}
         <p>
           If you are a <strong>new user</strong>, you must first{' '}
           <Link to="/signup">
@@ -24,14 +22,12 @@ const MainPage = () => {
           then install and log in with our companion Chrome extension.
         </p>
 
-        {/* <h2>Existing Users</h2> */}
         <p>
           If you are an <strong>existing user</strong>, please{' '}
           <Link to="/login">sign in </Link>
           to your existing account to view your data.
         </p>
 
-        <br />
         <h2>Privacy</h2>
         <p>
           At <strong>ChromeVision</strong>, we value the importance of
@@ -41,7 +37,6 @@ const MainPage = () => {
           <strong>no ownership</strong> of your personal emotional data.
         </p>
 
-        <br />
       </div>
     </div>
   );

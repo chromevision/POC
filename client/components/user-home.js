@@ -1,31 +1,50 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { getAllEmotionsThunk } from '../store/emotions';
+import {setAllEmotionsOfDomain} from '../store/currentDomainEmotions';
 import UserEmotionsLine from './UserEmotionsLine';
 import UserEmotionsRadar from './UserEmotionsRadar';
+import { urlFinder } from '../utils/baseUrlHelper';
+
 import {
 	Header,
 	Container,
 	Divider,
 	Statistic,
-	Rail,
-	Label,
-	Segment
+  Input,
+  Button,
+  Icon
 } from 'semantic-ui-react';
 
 class UserHome extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      search: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
 	}
 
+  handleChange(e){
+    this.setState({search: e.target.value});
+  }
+  handleSubmit() {
+    const arr = urlFinder(this.props.Emotions,this.state.search);
+    this.props.setAllEmotionsOfDomain(arr);
+  }
 	render() {
+
 		return (
 			<Container>
 				<Container>
 					{/* <Header floated="right" as="h4">
 						Total Snapshots: {this.props.Emotions.length}
 					</Header> */}
-					<Header as="h2">Your Snapshot</Header>
+					<Header as="h2">Your Web Snapshot</Header>
 
 					<Divider horizontal />
 					<Statistic floated="right">
@@ -39,10 +58,19 @@ class UserHome extends Component {
 					</Divider>
 					<UserEmotionsLine />
 					<Divider horizontal section>
-						<Header as="h3">Creat Your Own Treand</Header>
-						<Header as="h6">Placeholder</Header>
+						<Header as="h2">Search a Site To View Your Sitewide Trends!</Header>
+						{/* <Header as="h6">To View Trends!</Header> */}
 					</Divider>
-					<UserEmotionsLine searchable={true} />
+          <div>
+            <Input onChange={this.handleChange} placeholder='Domain'/>
+            <Button onClick={this.handleSubmit} animated='vertical'>
+              <Button.Content hidden>View</Button.Content>
+              <Button.Content visible>
+              <Icon name='world' />
+              </Button.Content>
+            </Button>
+          </div>
+					<UserEmotionsLine forCurr = {true}/>
 				</Container>
 			</Container>
 		);
@@ -51,14 +79,15 @@ class UserHome extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+    getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
+    setAllEmotionsOfDomain: (emotions) => dispatch(setAllEmotionsOfDomain(emotions))
 	};
 };
 
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
-		Emotions: state.emotions
+    Emotions: state.emotions,
 	};
 };
 

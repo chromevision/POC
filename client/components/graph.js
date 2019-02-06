@@ -62,7 +62,7 @@ const dataLine = {
 	]
 };
 
-class Graph extends Component {
+export default class Graph extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -91,5 +91,3 @@ class Graph extends Component {
 		);
 	}
 }
-
-export default Graph;

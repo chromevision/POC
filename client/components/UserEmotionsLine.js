@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
-import { Menu, Segment, Header, Text, Search } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 
 class UserHomeLine extends Component {
 	state = {
@@ -16,34 +16,36 @@ class UserHomeLine extends Component {
 
 	render() {
 		const { activeItem } = this.state;
-
+		let toShow = this.props.Emotions;
+		if (this.props.forCurr === true) {
+			toShow = this.props.currentDomainEmotions;
+		}
 		return (
 			<div className="sub-nav container">
-				{this.props.searchable ? <Search /> : null}
-				<Menu pointing fluid widths={7} secondary>
+				<Menu fluid widths={7} tabular attached="top">
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="green"
 					/>
 					<Menu.Item
 						name="disgust"
 						active={activeItem === 'disgust'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="orange"
 					/>
 					<Menu.Item
 						name="fear"
 						active={activeItem === 'fear'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="purple"
 					/>
 					<Menu.Item
 						name="surprise"
 						active={activeItem === 'surprise'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="yellow"
 					/>
 					<Menu.Item
 						name="sadness"
@@ -68,26 +70,26 @@ class UserHomeLine extends Component {
 					{activeItem === 'happiness' ? (
 						<Line
 							easing="easeInOutBounce"
-							data={datafyLine(this.props.Emotions, 'Happiness')}
+							data={datafyLine(toShow, 'Happiness')}
 						/>
 					) : null}
 					{activeItem === 'sadness' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Sadness')} />
+						<Line data={datafyLine(toShow, 'Sadness')} />
 					) : null}
 					{activeItem === 'surprise' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Surprise')} />
+						<Line data={datafyLine(toShow, 'Surprise')} />
 					) : null}
 					{activeItem === 'anger' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Anger')} />
+						<Line data={datafyLine(toShow, 'Anger')} />
 					) : null}
 					{activeItem === 'contempt' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Contempt')} />
+						<Line data={datafyLine(toShow, 'Contempt')} />
 					) : null}
 					{activeItem === 'disgust' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Disgust')} />
+						<Line data={datafyLine(toShow, 'Disgust')} />
 					) : null}
 					{activeItem === 'fear' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Fear')} />
+						<Line data={datafyLine(toShow, 'Fear')} />
 					) : null}
 				</Segment>
 			</div>
@@ -104,7 +106,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
-		Emotions: state.emotions
+		Emotions: state.emotions,
+		currentDomainEmotions: state.currentDomainEmotions
 	};
 };
 
