@@ -9,9 +9,10 @@ class Dataview extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ margin: '1vh 2vw' }}>
         <div className="sub-nav centered enlarged-font wrap-container">
-          We aim for full user <strong>transparency</strong>! Here is all the data we have associated with {this.props.Email}:
+          We aim for full user <strong>transparency</strong>! Here is all the
+          data we have associated with {this.props.Email}:
         </div>
         <Table celled>
           <Table.Header>
