@@ -20,14 +20,14 @@ export const datafyRadar = arr => {
 
 	return {
 		labels: [
-			'anger',
-			'contempt',
-			'disgust',
-			'fear',
-			'happiness',
-			'neutral',
-			'sadness',
-			'surprise'
+			'Anger',
+			'Contempt',
+			'Disgust',
+			'Fear',
+			'Happiness',
+			'Neutral',
+			'Sadness',
+			'Surprise'
 		],
 		datasets: [
 			{
@@ -76,15 +76,15 @@ export const datafyLine = (arr, emotion) => {
 				label: emotion,
 				fill: false,
 				lineTension: 0.1,
-				backgroundColor: 'rgba(255,99,132,1)',
-				borderColor: 'rgba(255,99,132,1)',
+				backgroundColor: 'rgba(0,128,128,.5)',
+				borderColor: 'rgba(152,251,152,1)',
 				borderCapStyle: 'butt',
 				borderDash: [],
 				borderDashOffset: 0.0,
 				borderJoinStyle: 'miter',
-				pointBorderColor: 'rgba(75,192,192,1)',
+				pointBorderColor: 'rgba(152,251,152,.1)',
 				pointBackgroundColor: '#fff',
-				pointBorderWidth: 1,
+				pointBorderWidth: 0.1,
 				pointHoverRadius: 5,
 				pointHoverBackgroundColor: 'rgba(75,192,192,1)',
 				pointHoverBorderColor: 'rgba(220,220,220,1)',
