@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== 'production') require('../secrets');
 // passport registration
 // passport.serializeUser((user, done) => done(null, user.id));
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+	done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {

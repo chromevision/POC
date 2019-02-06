@@ -48,7 +48,7 @@ export const datafyRadar = arr => {
 				pointBorderColor: '#fff',
 				pointHoverBackgroundColor: '#fff',
 				pointHoverBorderColor: 'rgba(255,99,132,1)',
-				data: ['0.36', '0.24', '0.29', '0.14', '0.77', '0.563', '0.644', '0.38']
+				data: avgOfEmotionValues(values)
 			}
 		]
 	};
