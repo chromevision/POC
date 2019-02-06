@@ -6,7 +6,7 @@ import { logout } from '../store';
 import { Menu } from 'semantic-ui-react';
 
 class Navbar extends Component {
-  state = { activeItem: 'home' };
+	state = { activeItem: 'home' };
 
 	handleItemClick = (evt, { name }) => {
 		if (name === 'ChromeVision') {
@@ -23,7 +23,7 @@ class Navbar extends Component {
 		const { isLoggedIn } = this.props;
 		return (
 			<div>
-				<Menu pointing size="massive">
+				<Menu pointing size="massive" stackable>
 					<Menu.Item
 						header
 						as={Link}
@@ -40,13 +40,36 @@ class Navbar extends Component {
 						active={activeItem === 'home'}
 						onClick={this.handleItemClick}
 					/>
-					<Menu.Item
-						as={Link}
-						to="/charts"
-						name="charts"
-						active={activeItem === 'charts'}
-						onClick={this.handleItemClick}
-					/>
+          { isLoggedIn ?
+          <Menu.Menu position='left'>
+            <Menu.Item
+              as={Link}
+              to="/charts"
+              name="charts"
+              // disabled={!isLoggedIn}
+              active={activeItem === 'charts'}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              as={Link}
+              to="/data"
+              name="data"
+              // disabled={!isLoggedIn}
+              active={activeItem === 'data'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu> :
+          <Menu.Menu position='left'>
+          <Menu.Item
+              as={Link}
+              to="/examplecharts"
+              name="Example Charts"
+              active={activeItem === 'charts'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+          }
+
 
 					<Menu.Menu position="right">
 						{!isLoggedIn ? (
@@ -82,20 +105,20 @@ class Navbar extends Component {
 }
 
 const mapStateToProp = state => {
-  return {
-    isLoggedIn: !!state.user.id,
-  };
+	return {
+		isLoggedIn: !!state.user.id
+	};
 };
 
 const mapStateToDispatch = dispatch => {
-  return {
-    logout: () => dispatch(logout()),
-  };
+	return {
+		logout: () => dispatch(logout())
+	};
 };
 
 export default connect(mapStateToProp, mapStateToDispatch)(Navbar);
 
 Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+	handleClick: PropTypes.func.isRequired,
+	isLoggedIn: PropTypes.bool.isRequired
 };
