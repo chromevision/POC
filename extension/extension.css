@@ -77,3 +77,9 @@ form p,
 	font-weight: 800;
 	text-shadow: 1px 1px 3px white;
 }
+
+#video-pic {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
