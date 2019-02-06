@@ -5,7 +5,7 @@ import { getAllEmotionsThunk } from '../store/emotions';
 import { Container, Divider } from 'semantic-ui-react';
 import { datafyRadar, datafyBar } from '../utils/chartJsHelper';
 
-class UserEmotionsRadar extends Component {
+class UserEmotionsBarPeak extends Component {
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
 	}
@@ -14,15 +14,15 @@ class UserEmotionsRadar extends Component {
 		return (
 			<Container>
 				<Divider horizontal section>
-					Emotional Sentiment Averages
+					EMOTIONAL PEAKS
 				</Divider>
-				<Doughnut
+				<Bar
 					responsive
 					responsiveAnimationDuration={5}
 					maintainAspectRatio
 					duration={9000}
 					easing="easeInOutBounce"
-					data={datafyRadar(this.props.Emotions)}
+					data={datafyBar(this.props.Emotions)}
 				/>
 			</Container>
 		);
@@ -42,4 +42,6 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserEmotionsRadar);
+export default connect(mapStateToProps, mapDispatchToProps)(
+	UserEmotionsBarPeak
+);

@@ -12,6 +12,7 @@ import {
 	Label,
 	Segment
 } from 'semantic-ui-react';
+import UserEmotionsBarPeak from './UserEmotionsBarPeak';
 
 class UserHome extends Component {
 	componentDidMount() {
@@ -36,6 +37,10 @@ class UserHome extends Component {
 				<Segment>
 					<UserEmotionsRadar />
 				</Segment>
+				<Segment>
+					<UserEmotionsBarPeak />
+				</Segment>
+
 				<Divider horizontal section>
 					<Header as="h3">Trends by individual emotions</Header>
 				</Divider>
