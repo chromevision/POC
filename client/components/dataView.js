@@ -18,14 +18,14 @@ class Dataview extends Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>URL</Table.HeaderCell>
-              <Table.HeaderCell>Anger Score</Table.HeaderCell>
-              <Table.HeaderCell>Contempt Score</Table.HeaderCell>
-              <Table.HeaderCell>Disgust Score</Table.HeaderCell>
-              <Table.HeaderCell>Fear Score</Table.HeaderCell>
-              <Table.HeaderCell>Happiness Score</Table.HeaderCell>
-              <Table.HeaderCell>Neutral Score</Table.HeaderCell>
-              <Table.HeaderCell>Sadness Score</Table.HeaderCell>
-              <Table.HeaderCell>Suprise Score</Table.HeaderCell>
+              <Table.HeaderCell>Anger</Table.HeaderCell>
+              <Table.HeaderCell>Contempt</Table.HeaderCell>
+              <Table.HeaderCell>Disgust</Table.HeaderCell>
+              <Table.HeaderCell>Fear</Table.HeaderCell>
+              <Table.HeaderCell>Happiness</Table.HeaderCell>
+              <Table.HeaderCell>Neutral</Table.HeaderCell>
+              <Table.HeaderCell>Sadness</Table.HeaderCell>
+              <Table.HeaderCell>Suprise</Table.HeaderCell>
               <Table.HeaderCell>Date</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
