@@ -21,22 +21,34 @@ class UserHome extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			search: ''
+			search: '',
+			modal: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
+		if (this.props.Emotions.length === 0) {
+			console.log(this.state.modal);
+			console.log(this.props.Emotions);
+			this.setState({ modal: true });
+		}
 	}
 
 	handleChange(e) {
 		this.setState({ search: e.target.value });
 	}
+
 	handleSubmit() {
 		const arr = urlFinder(this.props.Emotions, this.state.search);
 		this.props.setAllEmotionsOfDomain(arr);
 	}
+
+	handleClose = () => {
+		this.setState({ modal: false });
+	};
+
 	render() {
 		return (
 			<Container>
