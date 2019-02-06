@@ -149,6 +149,5 @@ const peakEmotion = arr => {
 		arrOfPeaks.push(peak.toFixed(4));
 		peak = 0;
 	}
-	console.log(arrOfPeaks);
 	return arrOfPeaks;
 };

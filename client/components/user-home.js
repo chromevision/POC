@@ -64,10 +64,6 @@ class UserHome extends Component {
 				<Segment raised>
 					<UserEmotionsLineSearch />
 				</Segment>
-				{/* <Divider horizontal section>
-						<Header as="h2">Search a Site To View Your Sitewide Trends!</Header>
-						{/* <Header as="h6">To View Trends!</Header> */}
-				{/* </Divider> */}
 			</Container>
 		);
 	}
