@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Radar, Polar, Doughnut, Pie, Bar } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { getAllEmotionsThunk } from '../store/emotions';
 import { Container, Divider } from 'semantic-ui-react';
 import { datafyRadar, datafyBar } from '../utils/chartJsHelper';
