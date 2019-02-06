@@ -9,7 +9,13 @@ import UserEmotionsLineSearch from './UserEmotionsLineSearch';
 
 import { urlFinder } from '../utils/baseUrlHelper';
 
-import { Header, Container, Statistic, Segment } from 'semantic-ui-react';
+import {
+	Header,
+	Container,
+	Statistic,
+	Segment,
+	Divider
+} from 'semantic-ui-react';
 
 class UserHome extends Component {
 	constructor(props) {
@@ -52,8 +58,8 @@ class UserHome extends Component {
 						</Header>
 					</div>
 				</Container>
+				<Divider hidden />
 				<Container>
-					<Header as="h1">Your Snapshot</Header>
 					<Header floated="right" as="h4">
 						<Statistic floated="right">
 							<Statistic.Label>Snapshots</Statistic.Label>
