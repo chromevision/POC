@@ -3,10 +3,8 @@ const startButton = document.getElementById('start-button');
 const stopButton = document.getElementById('stop-button');
 const counter = document.getElementById('counter');
 
-// IIFE to initialize snapshot counter for this session
 (function initializeCounter() {
-	const snapshotsTaken = 0;
-	counter.textContent = snapshotsTaken;
+  counter.textContent = 0;
 })();
 
 navigator.mediaDevices
@@ -23,6 +21,7 @@ const canvas = document.getElementById('canvas');
 let token;
 
 const takePicture = () => {
+  counter.textContent = parseInt(++counter.textContent, 10);
   var context = canvas.getContext('2d');
   var width = canvas.width;
   var height = canvas.height;
@@ -53,7 +52,7 @@ const takePicture = () => {
     }
 
     async function displayTab(tab) {
-			let tabURL = tab.url;
+      let tabURL = tab.url;
       await fetch('http://localhost:8080/api/webcam', {
         method: 'POST',
         body: byteArr,
