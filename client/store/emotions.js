@@ -16,7 +16,7 @@ export const getAllEmotionsThunk = id => async dispatch => {
 		const emotions = await axios.get(`/api/users/${id}/emotions`);
 		dispatch(getAllEmotions(emotions.data));
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 

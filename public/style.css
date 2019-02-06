@@ -1,7 +1,5 @@
 body {
 	background-color: #f2f2f2;
-	background-image: url('./bg.jpg');
-	background-size: cover;
 	font-family: 'Dosis', sans-serif;
 	margin: 0;
 }
@@ -53,35 +51,37 @@ nav a:hover {
 .centered {
 	text-align: center;
 }
-/*
-.container {
-  background-color: #fff;
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px black;
-  padding: 1vh 3vw;
-} */
 
 .enlarged-font {
-	font-size: 175%;
+	font-size: 140%;
 }
 
 .fixed {
 	position: fixed;
 	z-index: 100;
 }
-/*
+
+.login-form {
+	padding-top: 20vh;
+}
+
 .main-container {
-  margin-top: 7vh;
+	background-color: #fafafa;
+	border-radius: 30px;
+	box-shadow: 0px 0px 10px #000;
+	margin-top: 10vh;
+	padding: 5vh 5vw;
 }
 
 .sub-nav {
-  padding-top: 10vh;
-/* } */
+	padding-top: 5vh;
+}
 
 .wrap-container {
 	margin: 0 15vw;
 }
-*/ #auth-form {
+
+#auth-form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -108,11 +108,15 @@ nav a:hover {
 #auth-google {
 	text-align: center;
 }
-/*
+
+#domain-search {
+	display: flex;
+	justify-content: center;
+}
+
 #form-container {
-  margin-top: 18vh;
-  padding: 5vh 0;
-} */
+	margin-top: 18vh;
+}
 
 #form-header {
 	font-family: Georgia, serif;
@@ -141,4 +145,9 @@ nav a:hover {
 	font-size: 2.5em;
 	font-weight: 800;
 	text-shadow: 1px 1px 3px white;
+}
+
+#wrong-username-pw {
+	font-size: 1.5em;
+	text-align: center;
 }

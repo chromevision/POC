@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import emotions from './emotions';
+import currentDomainEmotions from './currentDomainEmotions';
 
-const reducer = combineReducers({ user, emotions });
+const reducer = combineReducers({ user, emotions, currentDomainEmotions });
 const middleware = composeWithDevTools(
 	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

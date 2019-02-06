@@ -3,8 +3,12 @@ const { Emotion } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
 	try {
-		const allEmotions = await Emotion.findAll();
-		res.send(allEmotions);
+		if (!req.user || !req.user.admin) {
+			res.send("You're not authorized!");
+		} else {
+			const allEmotions = await Emotion.findAll();
+			res.send(allEmotions);
+		}
 	} catch (error) {
 		next(error);
 	}
@@ -12,13 +16,17 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
 	try {
-		const userEmotions = await Emotion.findAll({
-			where: {
-				userTokenId: req.params.id
-			},
-			include: [{ all: true }]
-		});
-		res.send(userEmotions);
+		if (!req.user || !req.user.admin) {
+			res.send("You're not authorized!");
+		} else {
+			const userEmotions = await Emotion.findAll({
+				where: {
+					userTokenId: req.params.id
+				},
+				include: [{ all: true }]
+			});
+			res.send(userEmotions);
+		}
 	} catch (error) {
 		next(error);
 	}

@@ -1,49 +1,76 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { getAllEmotionsThunk } from '../store/emotions';
-import UserEmotionsLine from './UserEmotionsLine';
+import { setAllEmotionsOfDomain } from '../store/currentDomainEmotions';
 import UserEmotionsRadar from './UserEmotionsRadar';
+import UserEmotionsBarPeak from './UserEmotionsBarPeak';
+import UserEmotionsLine from './UserEmotionsLine';
+import UserEmotionsLineSearch from './UserEmotionsLineSearch';
+
+import { urlFinder } from '../utils/baseUrlHelper';
+
 import {
 	Header,
 	Container,
-	Divider,
 	Statistic,
-	Rail,
-	Label,
-	Segment
+	Segment,
+	Divider
 } from 'semantic-ui-react';
 
 class UserHome extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			search: ''
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
 	}
 
+	handleChange(e) {
+		this.setState({ search: e.target.value });
+	}
+	handleSubmit() {
+		const arr = urlFinder(this.props.Emotions, this.state.search);
+		this.props.setAllEmotionsOfDomain(arr);
+	}
 	render() {
 		return (
 			<Container>
 				<Container>
-					{/* <Header floated="right" as="h4">
-						Total Snapshots: {this.props.Emotions.length}
-					</Header> */}
-					<Header as="h2">Your Snapshot</Header>
-
-					<Divider horizontal />
-					<Statistic floated="right">
-						<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
-						<Statistic.Label>Snapshots</Statistic.Label>
-					</Statistic>
-
-					<UserEmotionsRadar />
-					<Divider horizontal section>
-						<Header as="h3">Trends by individual emotions</Header>
-					</Divider>
-					<UserEmotionsLine />
-					<Divider horizontal section>
-						<Header as="h3">Creat Your Own Treand</Header>
-						<Header as="h6">Placeholder</Header>
-					</Divider>
-					<UserEmotionsLine searchable={true} />
+					<div
+						style={{
+							alignItems: 'flex-end',
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'space-between',
+							marginTop: '1vh'
+						}}>
+						<Header as="h1">Snapshot for {this.props.Email}</Header>
+						<Header as="h4">
+							<Statistic>
+								<Statistic.Label>Total Snapshots</Statistic.Label>
+								<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
+							</Statistic>
+						</Header>
+					</div>
 				</Container>
+				<Divider hidden />
+				<Segment raised>
+					<UserEmotionsRadar />
+				</Segment>
+				<Segment raised>
+					<UserEmotionsBarPeak />
+				</Segment>
+				<Segment raised>
+					<UserEmotionsLine />
+				</Segment>
+				<Segment raised>
+					<UserEmotionsLineSearch />
+				</Segment>
 			</Container>
 		);
 	}
@@ -51,13 +78,16 @@ class UserHome extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+		getAllEmotions: id => dispatch(getAllEmotionsThunk(id)),
+		setAllEmotionsOfDomain: emotions =>
+			dispatch(setAllEmotionsOfDomain(emotions))
 	};
 };
 
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
+		Email: state.user.email,
 		Emotions: state.emotions
 	};
 };

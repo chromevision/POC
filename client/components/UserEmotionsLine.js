@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
-import { Menu, Segment, Header, Text, Search } from 'semantic-ui-react';
+import { Menu, Segment, Container, Divider, Header } from 'semantic-ui-react';
 
 class UserHomeLine extends Component {
 	state = {
@@ -16,41 +16,18 @@ class UserHomeLine extends Component {
 
 	render() {
 		const { activeItem } = this.state;
-
+		let toShow = this.props.Emotions;
+		if (this.props.forCurr === true) {
+			toShow = this.props.currentDomainEmotions;
+		}
 		return (
-			<div className="sub-nav container">
-				{this.props.searchable ? <Search /> : null}
-				<Menu pointing fluid widths={7} secondary>
-					<Menu.Item
-						name="happiness"
-						active={activeItem === 'happiness'}
-						onClick={this.handleItemClick}
-						color="blue"
-					/>
-					<Menu.Item
-						name="disgust"
-						active={activeItem === 'disgust'}
-						onClick={this.handleItemClick}
-						color="blue"
-					/>
-					<Menu.Item
-						name="fear"
-						active={activeItem === 'fear'}
-						onClick={this.handleItemClick}
-						color="blue"
-					/>
-					<Menu.Item
-						name="surprise"
-						active={activeItem === 'surprise'}
-						onClick={this.handleItemClick}
-						color="blue"
-					/>
-					<Menu.Item
-						name="sadness"
-						active={activeItem === 'sadness'}
-						onClick={this.handleItemClick}
-						color="teal"
-					/>
+			<Container>
+				{this.props.searching ? null : (
+					<Divider horizontal section>
+						Trends by individual emotions
+					</Divider>
+				)}
+				<Menu size="tiny" fluid widths={8} tabular attached="top" stackable>
 					<Menu.Item
 						name="anger"
 						active={activeItem === 'anger'}
@@ -61,36 +38,73 @@ class UserHomeLine extends Component {
 						name="contempt"
 						active={activeItem === 'contempt'}
 						onClick={this.handleItemClick}
-						color="olive"
+						color="yellow"
+					/>
+					<Menu.Item
+						name="disgust"
+						active={activeItem === 'disgust'}
+						onClick={this.handleItemClick}
+						color="grey"
+					/>
+					<Menu.Item
+						name="fear"
+						active={activeItem === 'fear'}
+						onClick={this.handleItemClick}
+						color="orange"
+					/>
+					<Menu.Item
+						name="happiness"
+						active={activeItem === 'happiness'}
+						onClick={this.handleItemClick}
+						color="pink"
+					/>
+					<Menu.Item
+						name="neutral"
+						active={activeItem === 'neutral'}
+						onClick={this.handleItemClick}
+						color="teal"
+					/>
+					<Menu.Item
+						name="sadness"
+						active={activeItem === 'sadness'}
+						onClick={this.handleItemClick}
+						color="blue"
+					/>
+					<Menu.Item
+						name="surprise"
+						active={activeItem === 'surprise'}
+						onClick={this.handleItemClick}
+						color="purple"
 					/>
 				</Menu>
-				<Segment raised stacked padded="very">
-					{activeItem === 'happiness' ? (
-						<Line
-							easing="easeInOutBounce"
-							data={datafyLine(this.props.Emotions, 'Happiness')}
-						/>
-					) : null}
-					{activeItem === 'sadness' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Sadness')} />
-					) : null}
-					{activeItem === 'surprise' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Surprise')} />
-					) : null}
+
+				<Segment>
 					{activeItem === 'anger' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Anger')} />
+						<Line data={datafyLine(toShow, 'Anger', '#F14D45')} />
 					) : null}
 					{activeItem === 'contempt' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Contempt')} />
+						<Line data={datafyLine(toShow, 'Contempt', '#F0C445')} />
 					) : null}
 					{activeItem === 'disgust' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Disgust')} />
+						<Line data={datafyLine(toShow, 'Disgust', '#D7D9DD')} />
 					) : null}
 					{activeItem === 'fear' ? (
-						<Line data={datafyLine(this.props.Emotions, 'Fear')} />
+						<Line data={datafyLine(toShow, 'Fear', '#F9A755')} />
+					) : null}
+					{activeItem === 'happiness' ? (
+						<Line data={datafyLine(toShow, 'Happiness', '#FF6384')} />
+					) : null}
+					{activeItem === 'neutral' ? (
+						<Line data={datafyLine(toShow, 'Neutral', '#4BC0C0')} />
+					) : null}
+					{activeItem === 'sadness' ? (
+						<Line data={datafyLine(toShow, 'Sadness', '#61A2DA')} />
+					) : null}
+					{activeItem === 'surprise' ? (
+						<Line data={datafyLine(toShow, 'Surprise', '#916ED6')} />
 					) : null}
 				</Segment>
-			</div>
+			</Container>
 		);
 	}
 }
@@ -104,7 +118,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
-		Emotions: state.emotions
+		Emotions: state.emotions,
+		currentDomainEmotions: state.currentDomainEmotions
 	};
 };
 
