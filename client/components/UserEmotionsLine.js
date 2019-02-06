@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { datafyLine } from '../utils/chartJsHelper';
 import { getAllEmotionsThunk } from '../store/emotions';
-import { Menu, Segment, Header, Text, Dropdown } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 
 class UserHomeLine extends Component {
 	state = {
-    activeItem: 'happiness',
+		activeItem: 'happiness'
 	};
 	componentDidMount() {
 		this.props.getAllEmotions(this.props.User);
@@ -16,36 +16,36 @@ class UserHomeLine extends Component {
 
 	render() {
 		const { activeItem } = this.state;
-    let toShow = this.props.Emotions;
-    if(this.props.forCurr === true){
-      toShow = this.props.currentDomainEmotions;
-    }
+		let toShow = this.props.Emotions;
+		if (this.props.forCurr === true) {
+			toShow = this.props.currentDomainEmotions;
+		}
 		return (
 			<div className="sub-nav container">
-				<Menu pointing fluid widths={7} secondary>
+				<Menu fluid widths={7} tabular attached="top">
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="green"
 					/>
 					<Menu.Item
 						name="disgust"
 						active={activeItem === 'disgust'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="orange"
 					/>
 					<Menu.Item
 						name="fear"
 						active={activeItem === 'fear'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="purple"
 					/>
 					<Menu.Item
 						name="surprise"
 						active={activeItem === 'surprise'}
 						onClick={this.handleItemClick}
-						color="blue"
+						color="yellow"
 					/>
 					<Menu.Item
 						name="sadness"
@@ -106,8 +106,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
-    Emotions: state.emotions,
-    currentDomainEmotions: state.currentDomainEmotions
+		Emotions: state.emotions,
+		currentDomainEmotions: state.currentDomainEmotions
 	};
 };
 
