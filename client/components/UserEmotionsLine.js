@@ -66,7 +66,8 @@ class UserHomeLine extends Component {
 						color="olive"
 					/>
 				</Menu>
-				<Segment raised stacked padded="very">
+
+				<Segment>
 					{activeItem === 'happiness' ? (
 						<Line
 							easing="easeInOutBounce"
