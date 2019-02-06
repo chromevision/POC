@@ -39,7 +39,7 @@ class Dataview extends Component {
                 );
                 return (
                   <Table.Row key={emotion.id}>
-                    <Table.Cell>{emotion.url}</Table.Cell>
+                    <Table.Cell><a href={emotion.url} target="_blank" rel="noopener noreferrer" style={{fontSize:'14px'}}>{emotion.url}</a></Table.Cell>
                     <Table.Cell>{emotion.anger}</Table.Cell>
                     <Table.Cell>{emotion.contempt}</Table.Cell>
                     <Table.Cell>{emotion.disgust}</Table.Cell>
