@@ -10,9 +10,10 @@ class Dataview extends Component {
   render() {
     return (
       <div style={{ margin: '1vh 2vw' }}>
-        <div className="sub-nav centered enlarged-font wrap-container">
-          We aim for full user <strong>transparency</strong>! Here is all the
-          data we have associated with {this.props.Email}:
+        <div className="sub-nav centered enlarged-font">
+          We at <strong>ChromeVision</strong> understand the importance of{' '}
+          transparency. Accordingly, here is all the data we have associated
+          with you, {this.props.Email}:
         </div>
         <Table celled>
           <Table.Header>
