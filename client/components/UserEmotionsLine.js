@@ -24,7 +24,7 @@ class UserHomeLine extends Component {
 			<Container>
 				{this.props.searching ? null : (
 					<Divider horizontal section>
-						<Header>Trends by individual emotions</Header>
+						Trends by individual emotions
 					</Divider>
 				)}
 				<Menu size="tiny" fluid widths={8} tabular attached="top" stackable>
