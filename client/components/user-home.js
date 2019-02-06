@@ -2,23 +2,14 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { getAllEmotionsThunk } from '../store/emotions';
 import { setAllEmotionsOfDomain } from '../store/currentDomainEmotions';
-import UserEmotionsLine from './UserEmotionsLine';
 import UserEmotionsRadar from './UserEmotionsRadar';
-import UserHomeLineSearch from './UserEmotionsLineSearch';
+import UserEmotionsBarPeak from './UserEmotionsBarPeak';
+import UserEmotionsLine from './UserEmotionsLine';
+import UserEmotionsLineSearch from './UserEmotionsLineSearch';
+
 import { urlFinder } from '../utils/baseUrlHelper';
 
-import {
-	Header,
-	Container,
-	Divider,
-	Statistic,
-	Input,
-	Button,
-	Icon,
-	Segment
-} from 'semantic-ui-react';
-import UserEmotionsBarPeak from './UserEmotionsBarPeak';
-import UserEmotionsLineSearch from './UserEmotionsLineSearch';
+import { Header, Container, Statistic, Segment } from 'semantic-ui-react';
 
 class UserHome extends Component {
 	constructor(props) {
@@ -80,6 +71,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return {
 		User: state.user.id,
+		Email: state.user.email,
 		Emotions: state.emotions
 	};
 };
