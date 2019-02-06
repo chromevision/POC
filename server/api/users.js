@@ -45,4 +45,17 @@ router.get('/:id/emotions', async (req, res, next) => {
 	}
 });
 
+router.get('/:id/:site', async (req, res, next) => {
+  try {
+    const allEmotionsForSite = await Emotion.findAll({
+      where: {
+        userId: req.params.id,
+      }
+    });
+    const arr = allEmotionsForSite.filter(emotion => emotion.url.includes(req.params.site));
+    res.send(arr);
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;

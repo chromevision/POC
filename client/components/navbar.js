@@ -6,7 +6,7 @@ import { logout } from '../store';
 import { Menu } from 'semantic-ui-react';
 
 class Navbar extends Component {
-	state = { activeItem: 'home' };
+  state = { activeItem: 'home' };
 
 	handleItemClick = (evt, { name }) => {
 		if (name === 'ChromeVision') {
@@ -105,20 +105,20 @@ class Navbar extends Component {
 }
 
 const mapStateToProp = state => {
-	return {
-		isLoggedIn: !!state.user.id
-	};
+  return {
+    isLoggedIn: !!state.user.id,
+  };
 };
 
 const mapStateToDispatch = dispatch => {
-	return {
-		logout: () => dispatch(logout())
-	};
+  return {
+    logout: () => dispatch(logout()),
+  };
 };
 
 export default connect(mapStateToProp, mapStateToDispatch)(Navbar);
 
 Navbar.propTypes = {
-	handleClick: PropTypes.func.isRequired,
-	isLoggedIn: PropTypes.bool.isRequired
+  handleClick: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
