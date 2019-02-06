@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { getAllEmotionsThunk } from '../store/emotions';
 
 class Dataview extends Component {
-
+  componentDidMount(){
+    this.props.getAllEmotions(this.props.User);
+  }
   render() {
     console.log(this.props.Emotions);
     console.log(this.props.User);
@@ -24,29 +26,36 @@ class Dataview extends Component {
             <Table.HeaderCell>Date</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-        <Table.Body>
-          <Table.Row>
-            {/* {this.props.Emotions.map(emotion => <Table.Cell key={emotion.id}>{emotion.url}</Table.Cell>)} */}
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-        </Table.Body>
+            {
+              this.props.Emotions && this.props.Emotions.map(emotion => {
+                return (
+                  <Table.Body>
+                  <Table.Row key={emotion.id}>
+                    <Table.Cell>{emotion.url}</Table.Cell>
+                    <Table.Cell>{emotion.anger}</Table.Cell>
+                    <Table.Cell>{emotion.contempt}</Table.Cell>
+                    <Table.Cell>{emotion.disgust}</Table.Cell>
+                    <Table.Cell>{emotion.fear}</Table.Cell>
+                    <Table.Cell>{emotion.happiness}</Table.Cell>
+                    <Table.Cell>{emotion.neutral}</Table.Cell>
+                    <Table.Cell>{emotion.sadness}</Table.Cell>
+                    <Table.Cell>{emotion.surprise}</Table.Cell>
+                    <Table.Cell>{emotion.createdAt}</Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                  );
+              })
+            }
       </Table>
     );
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
+  };
+};
 const mapStateToProps = state => {
   return {
     User: state.user.id,
@@ -54,10 +63,5 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		getAllEmotions: id => dispatch(getAllEmotionsThunk(id))
-	};
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dataview);
