@@ -4,6 +4,7 @@ import { getAllEmotionsThunk } from '../store/emotions';
 import { setAllEmotionsOfDomain } from '../store/currentDomainEmotions';
 import UserEmotionsLine from './UserEmotionsLine';
 import UserEmotionsRadar from './UserEmotionsRadar';
+import UserHomeLineSearch from './UserEmotionsLineSearch';
 import { urlFinder } from '../utils/baseUrlHelper';
 
 import {
@@ -17,6 +18,7 @@ import {
 	Segment
 } from 'semantic-ui-react';
 import UserEmotionsBarPeak from './UserEmotionsBarPeak';
+import UserEmotionsLineSearch from './UserEmotionsLineSearch';
 
 class UserHome extends Component {
 	constructor(props) {
@@ -50,36 +52,32 @@ class UserHome extends Component {
 						</Statistic>
 					</Header>
 				</Container>
-
-				<Divider horizontal />
-
-				<Segment>
+				<Segment raised>
 					<UserEmotionsRadar />
 				</Segment>
-				<Segment>
+				<Segment raised>
 					<UserEmotionsBarPeak />
 				</Segment>
-
-				<Divider horizontal section>
-					<Header as="h3">Trends by individual emotions</Header>
-				</Divider>
 				<Segment raised>
 					<UserEmotionsLine />
-					<Divider horizontal section>
+				</Segment>
+				<Segment raised>
+					<UserEmotionsLineSearch />
+				</Segment>
+				{/* <Divider horizontal section>
 						<Header as="h2">Search a Site To View Your Sitewide Trends!</Header>
 						{/* <Header as="h6">To View Trends!</Header> */}
-					</Divider>
-					<div>
-						<Input onChange={this.handleChange} placeholder="Domain" />
-						<Button onClick={this.handleSubmit} animated="vertical">
-							<Button.Content hidden>View</Button.Content>
-							<Button.Content visible>
-								<Icon name="world" />
-							</Button.Content>
-						</Button>
-					</div>
-					<UserEmotionsLine forCurr={true} />
-				</Segment>
+				{/* </Divider> */} */}
+				<div>
+					<Input onChange={this.handleChange} placeholder="Domain" />
+					<Button onClick={this.handleSubmit} animated="vertical">
+						<Button.Content hidden>View</Button.Content>
+						<Button.Content visible>
+							<Icon name="world" />
+						</Button.Content>
+					</Button>
+				</div>
+				<UserHomeLineSearch forCurr={true} />
 			</Container>
 		);
 	}
