@@ -59,14 +59,6 @@ class UserHome extends Component {
 					</div>
 				</Container>
 				<Divider hidden />
-				<Container>
-					<Header floated="right" as="h4">
-						<Statistic floated="right">
-							<Statistic.Label>Snapshots</Statistic.Label>
-							<Statistic.Value>{this.props.Emotions.length}</Statistic.Value>
-						</Statistic>
-					</Header>
-				</Container>
 				<Segment raised>
 					<UserEmotionsRadar />
 				</Segment>
