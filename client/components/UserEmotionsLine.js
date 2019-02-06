@@ -22,7 +22,7 @@ class UserHomeLine extends Component {
 		}
 		return (
 			<div className="sub-nav container">
-				<Menu fluid widths={7} tabular attached="top">
+				<Menu fluid widths={7} tabular attached="top" stackable>
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
