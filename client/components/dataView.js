@@ -62,6 +62,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     User: state.user.id,
+    Email: state.user.email,
     Emotions: state.emotions,
   };
 };
