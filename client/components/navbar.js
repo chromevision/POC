@@ -40,20 +40,36 @@ class Navbar extends Component {
 						active={activeItem === 'home'}
 						onClick={this.handleItemClick}
 					/>
-					<Menu.Item
-						as={Link}
-						to="/charts"
-						name="charts"
-						active={activeItem === 'charts'}
-						onClick={this.handleItemClick}
-					/>
+          { isLoggedIn ?
+          <Menu.Menu position='left'>
+            <Menu.Item
+              as={Link}
+              to="/charts"
+              name="charts"
+              // disabled={!isLoggedIn}
+              active={activeItem === 'charts'}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              as={Link}
+              to="/data"
+              name="data"
+              // disabled={!isLoggedIn}
+              active={activeItem === 'data'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu> :
+          <Menu.Menu position='left'>
           <Menu.Item
-						as={Link}
-						to="/data"
-						name="data"
-						active={activeItem === 'data'}
-						onClick={this.handleItemClick}
-					/>
+              as={Link}
+              to="/examplecharts"
+              name="Example Charts"
+              active={activeItem === 'charts'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+          }
+
 
 					<Menu.Menu position="right">
 						{!isLoggedIn ? (

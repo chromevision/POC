@@ -22,12 +22,12 @@ class Routes extends Component {
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
 				<Route path="/graph" component={Graph} />
-        <Route path="/data" component={Dataview} />
-
+        <Route path="/examplecharts" component={Graph} />
 				{isLoggedIn && (
-					<Switch>
+          <Switch>
 						{/* Routes placed here are only available after logging in */}
 						<Route path="/charts" component={UserHome} />
+            <Route path="/data" component={Dataview} />
 					</Switch>
 				)}
 				<Route component={MainPage} />
