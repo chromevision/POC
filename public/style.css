@@ -109,6 +109,11 @@ nav a:hover {
 	text-align: center;
 }
 
+#domain-search {
+	display: flex;
+	justify-content: center;
+}
+
 #form-container {
 	margin-top: 18vh;
 }
