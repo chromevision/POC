@@ -15,6 +15,7 @@ import {
 	Icon
 } from 'semantic-ui-react';
 import { urlFinder } from '../utils/baseUrlHelper';
+import UserEmotionsLine from './UserEmotionsLine';
 
 class UserHomeLineSearch extends Component {
 	constructor(props) {
@@ -53,12 +54,15 @@ class UserHomeLineSearch extends Component {
 				</Divider>
 
 				<Input
-					// action={this.handleSubmit}
-					onChange={this.handleChange}
 					placeholder="Domain"
 					icon="world"
 					iconPosition="left"
 					size="mini"
+					onChange={this.handleChange}
+					action={{
+						icon: 'search',
+						onClick: () => this.handleSubmit()
+					}}
 				/>
 				{/* <Button onClick={this.handleSubmit} animated="vertical">
 					<Button.Content hidden>View</Button.Content>
@@ -66,7 +70,9 @@ class UserHomeLineSearch extends Component {
 				</Button> */}
 
 				<Divider hidden />
-				<Menu fluid widths={7} tabular attached="top" stackable>
+				<UserEmotionsLine searching={true} />
+
+				{/* <Menu fluid widths={7} tabular attached="top" stackable>
 					<Menu.Item
 						name="happiness"
 						active={activeItem === 'happiness'}
@@ -136,7 +142,7 @@ class UserHomeLineSearch extends Component {
 					{activeItem === 'fear' ? (
 						<Line data={datafyLine(toShow, 'Fear')} />
 					) : null}
-				</Segment>
+				</Segment> */}
 			</Container>
 		);
 	}

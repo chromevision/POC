@@ -67,17 +67,7 @@ class UserHome extends Component {
 				{/* <Divider horizontal section>
 						<Header as="h2">Search a Site To View Your Sitewide Trends!</Header>
 						{/* <Header as="h6">To View Trends!</Header> */}
-				{/* </Divider> */} */}
-				<div>
-					<Input onChange={this.handleChange} placeholder="Domain" />
-					<Button onClick={this.handleSubmit} animated="vertical">
-						<Button.Content hidden>View</Button.Content>
-						<Button.Content visible>
-							<Icon name="world" />
-						</Button.Content>
-					</Button>
-				</div>
-				<UserHomeLineSearch forCurr={true} />
+				{/* </Divider> */}
 			</Container>
 		);
 	}

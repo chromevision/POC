@@ -22,9 +22,11 @@ class UserHomeLine extends Component {
 		}
 		return (
 			<Container>
-				<Divider horizontal section>
-					<Header>Trends by individual emotions</Header>
-				</Divider>
+				{this.props.searching ? null : (
+					<Divider horizontal section>
+						<Header>Trends by individual emotions</Header>
+					</Divider>
+				)}
 				<Menu fluid widths={7} tabular attached="top" stackable>
 					<Menu.Item
 						name="happiness"
