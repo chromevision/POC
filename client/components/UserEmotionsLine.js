@@ -16,11 +16,9 @@ class UserHomeLine extends Component {
 
 	render() {
 		const { activeItem } = this.state;
-    let toShow;
+    let toShow = this.props.Emotions;
     if(this.props.forCurr === true){
       toShow = this.props.currentDomainEmotions;
-    } else{
-      toShow = this.props.Emotions;
     }
 		return (
 			<div className="sub-nav container">

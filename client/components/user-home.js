@@ -44,7 +44,7 @@ class UserHome extends Component {
 					{/* <Header floated="right" as="h4">
 						Total Snapshots: {this.props.Emotions.length}
 					</Header> */}
-					<Header as="h2">Your Snapshot</Header>
+					<Header as="h2">Your Web Snapshot</Header>
 
 					<Divider horizontal />
 					<Statistic floated="right">
@@ -58,8 +58,8 @@ class UserHome extends Component {
 					</Divider>
 					<UserEmotionsLine />
 					<Divider horizontal section>
-						<Header as="h3">Creat Your Own Treand</Header>
-						<Header as="h6">Placeholder</Header>
+						<Header as="h2">Search a Site To View Your Sitewide Trends!</Header>
+						{/* <Header as="h6">To View Trends!</Header> */}
 					</Divider>
           <div>
             <Input onChange={this.handleChange} placeholder='Domain'/>

@@ -18,4 +18,4 @@ export default function(state = defaultAllEmotionOfDomain, action) {
 		default:
 			return state;
 	}
-}
+};
