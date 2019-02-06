@@ -47,6 +47,13 @@ class Navbar extends Component {
 						active={activeItem === 'charts'}
 						onClick={this.handleItemClick}
 					/>
+          <Menu.Item
+						as={Link}
+						to="/data"
+						name="data"
+						active={activeItem === 'data'}
+						onClick={this.handleItemClick}
+					/>
 
 					<Menu.Menu position="right">
 						{!isLoggedIn ? (
