@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Radar, Line } from 'react-chartjs-2';
+import { Doughnut, Line, Bar } from 'react-chartjs-2';
+import {
+	Container,
+	Divider,
+	Segment,
+	Menu,
+	Header,
+	Statistic
+} from 'semantic-ui-react';
+import { datafyLine } from '../utils/chartJsHelper';
 
 const dataRadar = {
 	labels: [
@@ -9,15 +18,24 @@ const dataRadar = {
 		'Disgust',
 		'Fear',
 		'Happiness',
-		'Neutrality',
+		'Neutral',
 		'Sadness',
 		'Surprise'
 	],
 	datasets: [
 		{
 			label: 'Snapshot:',
-			backgroundColor: 'rgba(255,99,132,0.2)',
-			borderColor: 'rgba(255,99,132,1)',
+			backgroundColor: [
+				'#F14D45',
+				'#F0C445',
+				'#D7D9DD',
+				'#F9A755',
+				'#FF6384',
+				'#4BC0C0',
+				'#61A2DA',
+				'#916ED6'
+			],
+			borderColor: 'rgba(	127,255,212,0)',
 			pointBackgroundColor: 'rgba(255,99,132,1)',
 			pointBorderColor: '#fff',
 			pointHoverBackgroundColor: '#fff',
@@ -39,7 +57,7 @@ const dataLine = {
 	],
 	datasets: [
 		{
-			label: 'Happiness',
+			label: 'happiness',
 			fill: false,
 			lineTension: 0.1,
 			backgroundColor: 'rgba(75,192,192,0.4)',
@@ -66,28 +84,69 @@ export default class Graph extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			emotions: []
+			activeItem: 'happiness'
 		};
 	}
-	async componentDidMount() {
-		try {
-			const emotions = await axios.get('/api/emotions');
-			this.setState({ emotions: emotions.data });
-		} catch (error) {
-			console.error(error);
-		}
-	}
+	handleItemClick = (evt, { name }) => this.setState({ activeItem: name });
 
 	render() {
+		const { activeItem } = this.state;
+		let toShow = dataLine;
+		if (this.props.forCurr === true) {
+			toShow = this.props.currentDomainEmotions;
+		}
 		return (
-			<div className="sub-nav">
-				<div className="container">
-					<h2> Your Google Snapshot: </h2>
-					<Radar data={dataRadar} />
-					<h2> Happiness trends while on Google: </h2>
-					<Line style={{ width: '600px' }} data={dataLine} />
-				</div>
-			</div>
+			<Container>
+				<Container>
+					<div
+						style={{
+							alignItems: 'flex-end',
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'space-between',
+							marginTop: '1vh'
+						}}>
+						<div style={{ fontSize: '28px' }}>Your Example Snapshot</div>
+						<Header as="h4">
+							<Statistic>
+								<Statistic.Label>Total Snapshots</Statistic.Label>
+								<Statistic.Value>328</Statistic.Value>
+							</Statistic>
+						</Header>
+					</div>
+				</Container>
+				<Divider hidden />
+				<Segment raised>
+					<Container>
+						<Divider horizontal section>
+							Emotional Sentiment Averages
+						</Divider>
+						<Doughnut
+							responsive
+							responsiveAnimationDuration={5}
+							maintainAspectRatio
+							duration={9000}
+							easing="easeInOutBounce"
+							data={dataRadar}
+						/>
+					</Container>
+				</Segment>
+				<Segment raised>
+					<Container>
+						<Divider horizontal section>
+							EMOTIONAL PEAKS
+						</Divider>
+						<Bar
+							responsive
+							responsiveAnimationDuration={5}
+							maintainAspectRatio
+							duration={9000}
+							easing="easeInOutBounce"
+							data={dataRadar}
+						/>
+					</Container>
+				</Segment>
+			</Container>
 		);
 	}
 }
