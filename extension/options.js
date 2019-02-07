@@ -7,6 +7,24 @@ const counter = document.getElementById('counter');
   counter.textContent = 0;
 })();
 
+startButton.addEventListener('click', function () {
+  if (startButton.disabled) {
+    return;
+  } else {
+    startButton.disabled = true;
+    stopButton.disabled = false;
+  }
+});
+
+stopButton.addEventListener('click', function () {
+  if (stopButton.disabled) {
+    return;
+  } else {
+    stopButton.disabled = true;
+    startButton.disabled = false;
+  }
+});
+
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: false })
   .then(stream => {
