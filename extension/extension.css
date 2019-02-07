@@ -39,6 +39,14 @@ form p,
   padding-bottom: 2vh;
 }
 
+.button-active {
+  border: 2px outset lightgrey;
+}
+
+.button-inactive {
+  color: grey;
+}
+
 .fixed {
   position: fixed;
   z-index: 100;

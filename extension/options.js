@@ -12,7 +12,11 @@ startButton.addEventListener('click', function () {
     return;
   } else {
     startButton.disabled = true;
+    startButton.classList.add('button-inactive');
+    startButton.classList.remove('button-active');
     stopButton.disabled = false;
+    stopButton.classList.add('button-active');
+    stopButton.classList.remove('button-inactive');
   }
 });
 
@@ -21,7 +25,11 @@ stopButton.addEventListener('click', function () {
     return;
   } else {
     stopButton.disabled = true;
+    stopButton.classList.add('button-inactive');
+    stopButton.classList.remove('button-active');
     startButton.disabled = false;
+    startButton.classList.add('button-active');
+    startButton.classList.remove('button-inactive');
   }
 });
 
