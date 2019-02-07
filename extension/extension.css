@@ -39,6 +39,10 @@ form p,
   padding-bottom: 2vh;
 }
 
+video {
+  object-fit: fill;
+}
+
 .button-active {
   border: 2px outset lightgrey;
 }
@@ -62,6 +66,11 @@ form p,
 
 .sub-nav {
   padding-top: 10vh;
+}
+
+#content {
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
 }
 
 #feedback {
