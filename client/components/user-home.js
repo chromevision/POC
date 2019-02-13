@@ -49,7 +49,10 @@ class UserHome extends Component {
 							justifyContent: 'space-between',
 							marginTop: '1vh'
 						}}>
-						<Header as="h1">Snapshot for {this.props.Email}</Header>
+						{/* <Header as="h1">Snapshot for {this.props.Email}</Header> */}
+            <div style={{fontSize: '28px'}}>
+						Snapshot for {this.props.Email}
+					  </div>
 						<Header as="h4">
 							<Statistic>
 								<Statistic.Label>Total Snapshots</Statistic.Label>

@@ -9,22 +9,24 @@ class Dataview extends Component {
   }
   render() {
     return (
-      <div>
-        <div className="sub-nav centered enlarged-font wrap-container">
-          We aim for full user <strong>transparency</strong>! Here is all the data we have associated with {this.props.Email}:
+      <div style={{ margin: '1vh 2vw' }}>
+        <div className="sub-nav centered enlarged-font">
+          We at <strong>ChromeVision</strong> understand the importance of{' '}
+          transparency. Accordingly, here is all the data we have associated
+          with you, {this.props.Email}:
         </div>
         <Table celled>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>URL</Table.HeaderCell>
-              <Table.HeaderCell>Anger Score</Table.HeaderCell>
-              <Table.HeaderCell>Contempt Score</Table.HeaderCell>
-              <Table.HeaderCell>Disgust Score</Table.HeaderCell>
-              <Table.HeaderCell>Fear Score</Table.HeaderCell>
-              <Table.HeaderCell>Happiness Score</Table.HeaderCell>
-              <Table.HeaderCell>Neutral Score</Table.HeaderCell>
-              <Table.HeaderCell>Sadness Score</Table.HeaderCell>
-              <Table.HeaderCell>Suprise Score</Table.HeaderCell>
+              <Table.HeaderCell>Anger</Table.HeaderCell>
+              <Table.HeaderCell>Contempt</Table.HeaderCell>
+              <Table.HeaderCell>Disgust</Table.HeaderCell>
+              <Table.HeaderCell>Fear</Table.HeaderCell>
+              <Table.HeaderCell>Happiness</Table.HeaderCell>
+              <Table.HeaderCell>Neutral</Table.HeaderCell>
+              <Table.HeaderCell>Sadness</Table.HeaderCell>
+              <Table.HeaderCell>Suprise</Table.HeaderCell>
               <Table.HeaderCell>Date</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -37,7 +39,7 @@ class Dataview extends Component {
                 );
                 return (
                   <Table.Row key={emotion.id}>
-                    <Table.Cell>{emotion.url}</Table.Cell>
+                    <Table.Cell><a href={emotion.url} target="_blank" rel="noopener noreferrer" style={{fontSize:'14px'}}>{emotion.url}</a></Table.Cell>
                     <Table.Cell>{emotion.anger}</Table.Cell>
                     <Table.Cell>{emotion.contempt}</Table.Cell>
                     <Table.Cell>{emotion.disgust}</Table.Cell>
